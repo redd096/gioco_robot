@@ -2,6 +2,7 @@ extends Control
 
 const MISSION_DURATION := 180.0
 const BOSS_TIME := 35.0
+const SETTINGS_PATH := "user://titan_settings.cfg"
 const ALERT_CARD := preload("res://scenes/emergency_card.tscn")
 
 const DIRECTIONS := {
@@ -19,27 +20,27 @@ const SYSTEM_COSTS := {
 }
 
 var tutorial: Array[Dictionary] = [
-	_event("tutorial-shield", "MISSILI A SINISTRA", "Primo contatto. Intercetta la salva in arrivo dal settore sinistro.", 16.0, [["shield", "left"]], "Scudo orientato correttamente. Salva neutralizzata.", 14.0, 0, "PROVA: seleziona SINISTRA, poi premi SCUDO"),
-	_event("tutorial-laser", "DRONE SOTTO LO SCAFO", "Un drone sta perforando la corazza dal basso. Lo scudo non può distruggerlo.", 16.0, [["laser", "below"]], "Drone distrutto. Il laser ha aumentato il calore.", 14.0, 0, "PROVA: seleziona SOTTO, poi premi LASER"),
+	_event("tutorial-shield", "MISSILI A SINISTRA", "Primo contatto. Intercetta la raffica in arrivo dal settore sinistro.", 16.0, [["shield", "left"]], "Scudo orientato correttamente. Raffica neutralizzata.", 14.0, 0, "PROVA: seleziona SINISTRA, poi premi SCUDO"),
+	_event("tutorial-laser", "DRONE AGGANCIATO SOTTO", "È già ancorato alla corazza: durante l'addestramento distruggilo col laser.", 16.0, [["laser", "below"]], "Drone distrutto. Il laser ha aumentato il calore.", 14.0, 0, "PROVA: seleziona SOTTO, poi premi LASER"),
 	_event("tutorial-rescue", "CIVILI A DESTRA", "Una squadra di evacuazione attende nel settore destro.", 16.0, [["rescue", "right"]], "Civili recuperati senza consumare energia.", 0.0, 18, "PROVA: seleziona DESTRA, poi premi SOCCORSO"),
 ]
 
 var events: Array[Dictionary] = [
-	_event("missiles-left", "MISSILI A SINISTRA", "Salva in avvicinamento dal settore sinistro.", 12.0, [["shield", "left"], ["boost", "right"]], "Missili evitati. Settore sinistro sicuro.", 18.0),
-	_event("missiles-right", "MISSILI A DESTRA", "Tracce multiple in arrivo dal settore destro.", 12.0, [["shield", "right"], ["boost", "left"]], "Minaccia evitata. Nessun impatto.", 18.0),
-	_event("front-cannon", "CANNONE FRONTALE", "Un'unità nemica sta caricando il cannone principale davanti a noi.", 12.0, [["laser", "front"], ["shield", "front"]], "Attacco frontale neutralizzato.", 22.0),
-	_event("mine", "MINA SOMMERSA", "Firma esplosiva sotto lo scafo. Allontanati o proteggi il ventre.", 11.0, [["shield", "below"], ["boost", "front"]], "Mina superata senza danni.", 20.0),
-	_event("civilians-left", "CIVILI A SINISTRA", "Squadra di evacuazione bloccata nel settore sinistro.", 14.0, [["rescue", "left"]], "Civili recuperati senza consumare energia.", 0.0, 14),
-	_event("civilians-right", "CIVILI A DESTRA", "Un rifugio sta cedendo nel settore destro.", 14.0, [["rescue", "right"]], "Rifugio evacuato in tempo.", 0.0, 18),
-	_event("collapse", "CROLLO DAVANTI", "Un grattacielo sta crollando sulla nostra traiettoria. Devi spostarti.", 11.0, [["boost", "left"], ["boost", "right"]], "Zona di crollo superata con i propulsori.", 16.0),
-	_event("drone", "DRONE SOTTO LO SCAFO", "Un drone d'assalto tenta di perforare la corazza dal basso.", 11.0, [["laser", "below"]], "Drone eliminato con il laser.", 15.0),
-	_event("flank", "NEMICO SUL FIANCO", "Unità corazzata in avvicinamento da sinistra. Lo scudo può solo rimandare l'inevitabile.", 12.0, [["laser", "left"]], "Unità corazzata neutralizzata.", 17.0),
+	_event("missiles-left", "MISSILI A SINISTRA", "Raffica di missili in arrivo da sinistra. Proteggi il fianco sinistro oppure scatta a destra.", 12.0, [["shield", "left"], ["boost", "right"]], "Missili evitati. Settore sinistro sicuro.", 18.0),
+	_event("missiles-right", "MISSILI A DESTRA", "Raffica di missili in arrivo da destra. Proteggi il fianco destro oppure scatta a sinistra.", 12.0, [["shield", "right"], ["boost", "left"]], "Minaccia evitata. Nessun impatto.", 18.0),
+	_event("front-cannon", "CANNONE FRONTALE", "Un'unità nemica sta caricando il cannone davanti a noi. Colpiscila oppure para il fuoco frontalmente.", 12.0, [["laser", "front"], ["shield", "front"]], "Attacco frontale neutralizzato.", 22.0),
+	_event("mine", "MINA SOMMERSA", "Ordigno esplosivo rilevato sotto lo scafo. Proteggi il ventre oppure allontanati in qualunque direzione sicura.", 11.0, [["shield", "below"], ["boost", "left"], ["boost", "front"], ["boost", "right"]], "Mina superata senza danni.", 20.0),
+	_event("civilians-left", "CIVILI A SINISTRA", "Squadra di evacuazione bloccata nel settore sinistro. Invia i soccorsi a sinistra.", 14.0, [["rescue", "left"]], "Civili recuperati senza consumare energia.", 0.0, 14),
+	_event("civilians-right", "CIVILI A DESTRA", "Un rifugio sta cedendo nel settore destro. Invia i soccorsi a destra.", 14.0, [["rescue", "right"]], "Rifugio evacuato in tempo.", 0.0, 18),
+	_event("collapse", "CROLLO DAVANTI", "Un grattacielo sta crollando sulla nostra traiettoria. Scatta lateralmente per evitarlo.", 11.0, [["boost", "left"], ["boost", "right"]], "Zona di crollo superata con i propulsori.", 16.0),
+	_event("drone", "DRONE IN ARRIVO DAL BASSO", "Un drone d'assalto sale verso lo scafo: abbattilo, respingilo verso il basso oppure allontanati in una direzione sicura.", 11.0, [["laser", "below"], ["shield", "below"], ["boost", "left"], ["boost", "front"], ["boost", "right"]], "Drone evitato prima che potesse agganciarsi.", 15.0),
+	_event("flank", "NEMICO SUL FIANCO", "Unità corazzata in avvicinamento da sinistra. Attacca, proteggi il fianco o scatta a destra.", 12.0, [["laser", "left"], ["shield", "left"], ["boost", "right"]], "Unità sul fianco neutralizzata o evitata.", 17.0),
 	_event("shockwave", "ONDA D'URTO", "Esplosione davanti a noi. I propulsori non bastano: reggi l'impatto.", 10.0, [["shield", "front"]], "Scudo frontale stabile. Onda assorbita.", 20.0),
 	_event("torpedo", "SILURO A SINISTRA", "Siluro pesante in rotta d'impatto. Bloccalo o scatta a destra.", 10.0, [["shield", "left"], ["boost", "right"]], "Siluro neutralizzato.", 24.0),
-	_event("breaker", "DEMOLITORE DAVANTI", "Corazza nemica esposta davanti a noi. Serve potenza di fuoco.", 13.0, [["laser", "front"]], "Demolitore abbattuto.", 24.0),
+	_event("breaker", "DEMOLITORE DAVANTI", "Il Demolitore carica frontalmente. Colpisci il nucleo oppure schiva lateralmente.", 13.0, [["laser", "front"], ["boost", "left"], ["boost", "right"]], "Carica del Demolitore neutralizzata.", 24.0),
 ]
 
-var boss_event := _event("boss", "COLOSSO DEL VARCO", "Tre nuclei davanti. Il laser li distrugge, ma il reattore non reggerà tre colpi consecutivi.", BOSS_TIME, [["laser", "front"]], "Nucleo distrutto.", 100.0, 0, "", true)
+var boss_event := _event("boss", "COLOSSO DEL VARCO", "Tre nuclei davanti. Servono tre laser: usa almeno un raffreddamento o attendi la dissipazione tra i colpi.", BOSS_TIME, [["laser", "front"]], "Nucleo distrutto.", 100.0, 0, "", true)
 
 var phase := "intro"
 var integrity := 100.0
@@ -59,14 +60,19 @@ var event_count := 0
 var next_uid := 0
 var last_event_id := ""
 var feedback := "Tre emergenze guidate prepareranno i sistemi."
-var muted := false
+var alarm_sounds := true
+var button_sounds := true
+var left_handed := false
+var denial_time := 0.0
 var cards: Dictionary = {}
 var audio_player: AudioStreamPlayer
+var grid_spacer: Control
 
 @onready var alerts_grid: GridContainer = %AlertsGrid
 @onready var radar_idle: PanelContainer = %RadarIdle
 @onready var intro_overlay: ColorRect = %IntroOverlay
 @onready var result_overlay: ColorRect = %ResultOverlay
+@onready var play_area = $Scroll/Margin/Content/PlayArea
 
 
 static func _event(id: String, title: String, body: String, seconds: float, solutions: Array, success: String, damage: float, rescued := 0, hint := "", boss := false) -> Dictionary:
@@ -77,9 +83,18 @@ func _ready() -> void:
 	randomize()
 	audio_player = AudioStreamPlayer.new()
 	add_child(audio_player)
+	grid_spacer = Control.new()
+	grid_spacer.custom_minimum_size = Vector2(250.0, 1.0)
+	grid_spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	grid_spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	alerts_grid.add_child(grid_spacer)
+	grid_spacer.hide()
+	_load_preferences()
 	%StartButton.pressed.connect(start_mission)
 	%RestartButton.pressed.connect(start_mission)
-	%SoundButton.pressed.connect(_toggle_sound)
+	%AlarmSoundButton.pressed.connect(_toggle_alarm_sound)
+	%ButtonSoundButton.pressed.connect(_toggle_button_sound)
+	%HandednessButton.pressed.connect(_toggle_handedness)
 	%LeftButton.pressed.connect(select_direction.bind("left"))
 	%FrontButton.pressed.connect(select_direction.bind("front"))
 	%RightButton.pressed.connect(select_direction.bind("right"))
@@ -123,10 +138,11 @@ func start_mission() -> void:
 	next_uid = 0
 	last_event_id = ""
 	feedback = "Tre emergenze guidate prepareranno i sistemi."
+	denial_time = 0.0
 	intro_overlay.hide()
 	result_overlay.hide()
 	_clear_cards()
-	_beep(260.0, 0.16)
+	_button_beep(260.0, 0.16)
 	_render()
 
 
@@ -140,40 +156,43 @@ func select_direction(value: String) -> void:
 func use_system(system: String) -> void:
 	if phase != "running":
 		return
-	_beep(180.0 if system == "laser" else 420.0, 0.07)
+	_button_beep(180.0 if system == "laser" else 420.0, 0.07)
 	Input.vibrate_handheld(25)
 	if system == "cool":
 		if coolant < 14.0:
-			feedback = "Refrigerante insufficiente."
+			_deny(system, "coolant", "REFRIGERANTE INSUFFICIENTE: servono 14 punti.")
 		elif heat < 5.0:
-			feedback = "Temperatura già nominale."
+			_deny(system, "", "RAFFREDDAMENTO NON NECESSARIO: temperatura già nominale.")
 		else:
 			coolant -= 14.0
 			heat = clampf(heat - 42.0, 0.0, 100.0)
 			reactor_lock = maxf(0.0, reactor_lock - 2.0)
+			denial_time = 0.0
 			feedback = "RAFFREDDAMENTO: calore ridotto di 42 punti."
 		return
 	if system == "repair":
 		if integrity >= 100.0:
-			feedback = "Integrità già al massimo."
+			_deny(system, "", "RIPARAZIONE NON NECESSARIA: integrità già al massimo.")
 		elif energy < 18.0:
-			feedback = "Energia insufficiente per la riparazione."
+			_deny(system, "energy", "ENERGIA INSUFFICIENTE: servono 18 punti per riparare.")
 		else:
 			energy -= 18.0
 			heat = clampf(heat + 6.0, 0.0, 100.0)
 			integrity = clampf(integrity + 15.0, 0.0, 100.0)
+			denial_time = 0.0
 			feedback = "RIPARAZIONE: +15 integrità, −18 energia."
 		return
 	if reactor_lock > 0.0:
-		feedback = "Reattore bloccato. Puoi soltanto raffreddare o riparare."
+		_deny(system, "heat", "REATTORE BLOCCATO: puoi soltanto raffreddare o riparare.")
 		return
 	var cost: Array = SYSTEM_COSTS[system]
 	if energy < cost[0]:
-		feedback = "ENERGIA INSUFFICIENTE: %s non disponibile." % system.to_upper()
+		_deny(system, "energy", "ENERGIA INSUFFICIENTE: servono %d punti per %s." % [roundi(cost[0]), system.to_upper()])
 		return
 	if heat + cost[1] >= 100.0:
-		feedback = "CALORE CRITICO: raffredda prima di usare %s." % system.to_upper()
+		_deny(system, "heat", "CALORE CRITICO: %s aggiungerebbe %d punti. Raffredda o attendi." % [system.to_upper(), roundi(cost[1])])
 		return
+	denial_time = 0.0
 	energy -= cost[0]
 	heat = clampf(heat + cost[1], 0.0, 100.0)
 	var match_index := _find_matching_alert(system, direction)
@@ -217,6 +236,7 @@ func use_system(system: String) -> void:
 
 func _tick(delta: float) -> void:
 	mission_time = clampf(mission_time - delta, 0.0, MISSION_DURATION)
+	denial_time = maxf(0.0, denial_time - delta)
 	energy = clampf(energy + 1.35 * delta, 0.0, 100.0)
 	heat = clampf(heat - 1.15 * delta, 0.0, 100.0)
 	reactor_lock = maxf(0.0, reactor_lock - delta)
@@ -253,6 +273,7 @@ func _tick(delta: float) -> void:
 		integrity = clampf(integrity - damage, 0.0, 100.0)
 		score = maxi(0, score - roundi(damage * 4.0))
 		feedback = "%d danni subiti: troppe emergenze ignorate." % roundi(damage)
+		_flash_impact()
 		Input.vibrate_handheld(180)
 	elif missed_civilians:
 		score = maxi(0, score - 40)
@@ -265,6 +286,7 @@ func _tick(delta: float) -> void:
 		reactor_lock = 5.0
 		integrity = clampf(integrity - 8.0, 0.0, 100.0)
 		feedback = "SOVRACCARICO: reattore bloccato e corazza danneggiata."
+		_flash_impact()
 	if mission_time <= BOSS_TIME and not _has_boss() and not boss_defeated:
 		_spawn_alert(boss_event, true)
 		spawn_delay = 999.0
@@ -296,7 +318,7 @@ func _spawn_alert(event: Dictionary, prepend := false) -> void:
 		alerts.push_front(alert)
 	else:
 		alerts.append(alert)
-	_beep(120.0 if event.boss else 760.0, 0.22 if event.boss else 0.08)
+	_alarm_beep(120.0 if event.boss else 760.0, 0.35 if event.boss else 0.12)
 	Input.vibrate_handheld(220 if event.boss else 80)
 
 
@@ -412,6 +434,8 @@ func _render() -> void:
 	%CiviliansLabel.text = "CIVILI %03d" % civilians
 	%ScoreLabel.text = "PUNTI %05d" % score
 	%FeedbackLabel.text = feedback
+	%FeedbackCaption.text = "NEGATO" if denial_time > 0.0 else "COMANDO"
+	%FeedbackCaption.modulate = Color(1.0, 0.25, 0.2) if denial_time > 0.0 else Color(1.0, 0.54, 0.27)
 	%IdleFeedback.text = feedback
 	_render_direction()
 	_sync_alert_cards()
@@ -440,6 +464,7 @@ func _sync_alert_cards() -> void:
 			cards[uid].queue_free()
 			cards.erase(uid)
 	radar_idle.visible = alerts.is_empty()
+	_update_grid_spacer()
 
 
 func _clear_cards() -> void:
@@ -447,6 +472,60 @@ func _clear_cards() -> void:
 		card.queue_free()
 	cards.clear()
 	radar_idle.show()
+	_update_grid_spacer()
+
+
+func _update_grid_spacer() -> void:
+	if not is_instance_valid(grid_spacer):
+		return
+	if grid_spacer.get_index() != alerts_grid.get_child_count() - 1:
+		alerts_grid.move_child(grid_spacer, alerts_grid.get_child_count() - 1)
+	grid_spacer.visible = alerts_grid.columns > 1 and not alerts.is_empty() and alerts.size() % alerts_grid.columns != 0
+
+
+func _deny(system: String, resource: String, message: String) -> void:
+	feedback = message
+	denial_time = 0.75
+	var buttons := {
+		"shield": %ShieldButton,
+		"laser": %LaserButton,
+		"boost": %BoostButton,
+		"rescue": %RescueButton,
+		"cool": %CoolButton,
+		"repair": %RepairButton,
+	}
+	_pulse_denied(buttons.get(system))
+	var meters := {
+		"energy": %EnergyBar,
+		"heat": %HeatBar,
+		"coolant": %CoolantBar,
+	}
+	if resource != "":
+		_pulse_denied(meters.get(resource))
+	_pulse_denied(%FeedbackPanel)
+
+
+func _pulse_denied(control: Control) -> void:
+	if not is_instance_valid(control):
+		return
+	var original_color := control.self_modulate
+	var original_x := control.position.x
+	var color_tween := create_tween()
+	color_tween.tween_property(control, "self_modulate", Color(1.0, 0.12, 0.1), 0.06)
+	color_tween.tween_interval(0.18)
+	color_tween.tween_property(control, "self_modulate", original_color, 0.18)
+	var shake_tween := create_tween()
+	shake_tween.tween_property(control, "position:x", original_x - 6.0, 0.04)
+	shake_tween.tween_property(control, "position:x", original_x + 6.0, 0.07)
+	shake_tween.tween_property(control, "position:x", original_x - 4.0, 0.06)
+	shake_tween.tween_property(control, "position:x", original_x + 4.0, 0.06)
+	shake_tween.tween_property(control, "position:x", original_x, 0.05)
+
+
+func _flash_impact() -> void:
+	var flash: ColorRect = %ImpactFlash
+	var tween := create_tween()
+	tween.tween_property(flash, "color", Color(1.0, 0.08, 0.04, 0.0), 0.38).from(Color(1.0, 0.08, 0.04, 0.65))
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -467,20 +546,69 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func _on_viewport_resized() -> void:
 	var viewport_size := get_viewport_rect().size
-	alerts_grid.columns = 2 if viewport_size.x > 1100.0 and viewport_size.x > viewport_size.y else 1
+	alerts_grid.columns = 2 if viewport_size.x >= 920.0 and viewport_size.x > viewport_size.y else 1
 	var portrait := viewport_size.x < viewport_size.y * 1.05
 	%Title.add_theme_font_size_override("font_size", 23 if portrait else 29)
-	%SoundButton.custom_minimum_size = Vector2(88.0 if portrait else 105.0, 48.0)
+	%HeaderControls.columns = 2 if portrait else 3
+	%DirectionGrid.columns = 2 if portrait else 4
+	%SystemsGrid.columns = 2 if portrait else 3
+	play_area.queue_sort()
+	_update_grid_spacer()
 
 
-func _toggle_sound() -> void:
-	muted = not muted
-	%SoundButton.text = "SUONO OFF" if muted else "SUONO ON"
+func _toggle_alarm_sound() -> void:
+	alarm_sounds = not alarm_sounds
+	%AlarmSoundButton.text = "ALLARMI ON" if alarm_sounds else "ALLARMI OFF"
+	_save_preferences()
+
+
+func _toggle_button_sound() -> void:
+	button_sounds = not button_sounds
+	%ButtonSoundButton.text = "PULSANTI ON" if button_sounds else "PULSANTI OFF"
+	if button_sounds:
+		_button_beep(520.0, 0.07)
+	_save_preferences()
+
+
+func _toggle_handedness() -> void:
+	left_handed = not left_handed
+	play_area.set_left_handed(left_handed)
+	%HandednessButton.text = "COMANDI SX" if left_handed else "COMANDI DX"
+	_button_beep(520.0, 0.07)
+	_save_preferences()
+
+
+func _load_preferences() -> void:
+	var config := ConfigFile.new()
+	if config.load(SETTINGS_PATH) == OK:
+		alarm_sounds = bool(config.get_value("audio", "alarms", true))
+		button_sounds = bool(config.get_value("audio", "buttons", true))
+		left_handed = bool(config.get_value("layout", "left_handed", false))
+	%AlarmSoundButton.text = "ALLARMI ON" if alarm_sounds else "ALLARMI OFF"
+	%ButtonSoundButton.text = "PULSANTI ON" if button_sounds else "PULSANTI OFF"
+	%HandednessButton.text = "COMANDI SX" if left_handed else "COMANDI DX"
+	play_area.set_left_handed(left_handed)
+
+
+func _save_preferences() -> void:
+	var config := ConfigFile.new()
+	config.set_value("audio", "alarms", alarm_sounds)
+	config.set_value("audio", "buttons", button_sounds)
+	config.set_value("layout", "left_handed", left_handed)
+	config.save(SETTINGS_PATH)
+
+
+func _button_beep(frequency: float, duration: float) -> void:
+	if button_sounds:
+		_beep(frequency, duration)
+
+
+func _alarm_beep(frequency: float, duration: float) -> void:
+	if alarm_sounds:
+		_beep(frequency, duration)
 
 
 func _beep(frequency: float, duration: float) -> void:
-	if muted:
-		return
 	var sample_rate := 22050
 	var frame_count := int(sample_rate * duration)
 	var bytes := PackedByteArray()

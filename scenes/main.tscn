@@ -40,6 +40,18 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.008, 0.026, 0.034, 1)
 
+[node name="ImpactFlash" type="ColorRect" parent="." unique_id=161461318]
+unique_name_in_owner = true
+z_index = 8
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.08, 0.04, 0)
+
 [node name="Scroll" type="ScrollContainer" parent="." unique_id=909021265]
 layout_mode = 1
 anchors_preset = 15
@@ -110,11 +122,30 @@ theme_override_font_sizes/font_size = 25
 text = "03:00"
 horizontal_alignment = 2
 
-[node name="SoundButton" type="Button" parent="Scroll/Margin/Content/Header/HeaderRow" unique_id=728439317]
+[node name="HeaderControls" type="GridContainer" parent="Scroll/Margin/Content/Header/HeaderRow" unique_id=2138175756]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(105, 48)
 layout_mode = 2
-text = "SUONO ON"
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 3
+
+[node name="AlarmSoundButton" type="Button" parent="Scroll/Margin/Content/Header/HeaderRow/HeaderControls" unique_id=1123154577]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(92, 38)
+layout_mode = 2
+text = "ALLARMI ON"
+
+[node name="ButtonSoundButton" type="Button" parent="Scroll/Margin/Content/Header/HeaderRow/HeaderControls" unique_id=336474950]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 38)
+layout_mode = 2
+text = "PULSANTI ON"
+
+[node name="HandednessButton" type="Button" parent="Scroll/Margin/Content/Header/HeaderRow/HeaderControls" unique_id=1626760161]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 38)
+layout_mode = 2
+text = "COMANDI DX"
 
 [node name="MetersPanel" type="PanelContainer" parent="Scroll/Margin/Content" unique_id=1395630865]
 layout_mode = 2
@@ -235,40 +266,48 @@ script = ExtResource("2_responsive")
 layout_mode = 2
 theme_override_constants/separation = 7
 
-[node name="AlertsGrid" type="GridContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn" unique_id=542522076]
+[node name="AlertsScroll" type="ScrollContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn" unique_id=707215203]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="AlertsGrid" type="GridContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll" unique_id=542522076]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 columns = 2
 
-[node name="RadarIdle" type="PanelContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsGrid" unique_id=1200630663]
+[node name="RadarIdle" type="PanelContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsGrid" unique_id=1200630663]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(260, 205)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="IdleContent" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsGrid/RadarIdle" unique_id=935977242]
+[node name="IdleContent" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsGrid/RadarIdle" unique_id=935977242]
 layout_mode = 2
 alignment = 1
 
-[node name="RadarCaption" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsGrid/RadarIdle/IdleContent" unique_id=403825807]
+[node name="RadarCaption" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsGrid/RadarIdle/IdleContent" unique_id=403825807]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.42, 0.65, 0.62, 1)
 theme_override_font_sizes/font_size = 11
 text = "RADAR TATTICO"
 horizontal_alignment = 1
 
-[node name="SafeLabel" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsGrid/RadarIdle/IdleContent" unique_id=893026606]
+[node name="SafeLabel" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsGrid/RadarIdle/IdleContent" unique_id=893026606]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.91, 1, 0.97, 1)
 theme_override_font_sizes/font_size = 24
 text = "SETTORE SICURO"
 horizontal_alignment = 1
 
-[node name="IdleFeedback" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsGrid/RadarIdle/IdleContent" unique_id=154388376]
+[node name="IdleFeedback" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsGrid/RadarIdle/IdleContent" unique_id=154388376]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5, 0.68, 0.65, 1)
@@ -278,6 +317,7 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="FeedbackPanel" type="PanelContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn" unique_id=1400892240]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("FeedbackPanel")
 
@@ -286,6 +326,7 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="FeedbackCaption" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/FeedbackPanel/FeedbackRow" unique_id=493547658]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.54, 0.27, 1)
 theme_override_font_sizes/font_size = 10
@@ -332,6 +373,7 @@ theme_override_font_sizes/font_size = 11
 text = "FRONTE"
 
 [node name="DirectionGrid" type="GridContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent" unique_id=310430361]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 6
 columns = 4
@@ -401,6 +443,7 @@ theme_override_font_sizes/font_size = 11
 text = "PRONTO"
 
 [node name="SystemsGrid" type="GridContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent" unique_id=1895828296]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 6
 theme_override_constants/v_separation = 6

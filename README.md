@@ -1,6 +1,6 @@
 # gioco_robot — Godot 4
 
-Porting nativo della versione 3 del prototipo web. Funziona con mouse, tastiera e touch, sia in orizzontale sia in verticale.
+Porting nativo della versione 8 del prototipo web. Funziona con mouse, tastiera e touch, sia in orizzontale sia in verticale.
 
 ## Avvio
 
@@ -13,12 +13,19 @@ Porting nativo della versione 3 del prototipo web. Funziona con mouse, tastiera 
 - Desktop: frecce direzionali e tasti `1–6`, oppure mouse.
 - Android: pulsanti touch della console.
 
-La UI è composta da nodi `Control` nelle scene `main.tscn` ed `emergency_card.tscn`. Il contenitore `ResponsivePlayArea` dispone automaticamente allarmi a sinistra e comandi a destra in orizzontale; in verticale mette i comandi sopra gli allarmi.
+La UI è composta da nodi `Control` nelle scene `main.tscn` ed `emergency_card.tscn`.
+
+- Allarmi e comandi restano affiancati sia in landscape sia in portrait.
+- `COMANDI DX/SX` inverte i lati per l'uso mancino e salva la preferenza.
+- Gli allarmi hanno uno scorrimento indipendente, quindi la pulsantiera rimane visibile.
+- I suoni degli allarmi e quelli dei pulsanti si possono disattivare separatamente.
+- Un comando senza risorse fa lampeggiare e scuotere sia il pulsante sia la barra interessata.
+- In landscape le card mantengono una griglia stabile e non cambiano larghezza quando il loro numero è dispari.
 
 ## Struttura
 
 - `scenes/main.tscn`: interfaccia principale modificabile dall’editor.
 - `scenes/emergency_card.tscn`: scheda riutilizzabile per un’emergenza.
 - `scripts/main.gd`: regole, bilanciamento e stato della missione.
-- `scripts/responsive_play_area.gd`: layout responsivo.
+- `scripts/responsive_play_area.gd`: layout responsivo e inversione mancini.
 - `export_presets.cfg`: preset Windows, Linux, WebGL e Android.
