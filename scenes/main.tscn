@@ -1,0 +1,602 @@
+[gd_scene format=3 uid="uid://cc4kkgqryulc"]
+
+[ext_resource type="Script" uid="uid://dtfab7qibu8we" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" uid="uid://ynuy7rwcf5ig" path="res://scripts/responsive_play_area.gd" id="2_responsive"]
+
+[sub_resource type="StyleBoxFlat" id="HeaderPanel"]
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+bg_color = Color(0.02, 0.065, 0.078, 0.96)
+border_width_bottom = 1
+border_color = Color(0.14, 0.36, 0.38, 1)
+
+[sub_resource type="StyleBoxFlat" id="FeedbackPanel"]
+content_margin_left = 9.0
+content_margin_top = 6.0
+content_margin_right = 9.0
+content_margin_bottom = 6.0
+bg_color = Color(0.035, 0.085, 0.095, 1)
+border_width_left = 3
+border_color = Color(1, 0.46, 0.18, 1)
+
+[node name="Main" type="Control" unique_id=2061582522]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1645400322]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.008, 0.026, 0.034, 1)
+
+[node name="Scroll" type="ScrollContainer" parent="." unique_id=909021265]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="Scroll" unique_id=1769945195]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 16
+
+[node name="Content" type="VBoxContainer" parent="Scroll/Margin" unique_id=1044757812]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="Header" type="PanelContainer" parent="Scroll/Margin/Content" unique_id=1632321270]
+layout_mode = 2
+theme_override_styles/panel = SubResource("HeaderPanel")
+
+[node name="HeaderRow" type="HBoxContainer" parent="Scroll/Margin/Content/Header" unique_id=611345344]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="TitleBlock" type="VBoxContainer" parent="Scroll/Margin/Content/Header/HeaderRow" unique_id=1514890237]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Eyebrow" type="Label" parent="Scroll/Margin/Content/Header/HeaderRow/TitleBlock" unique_id=262006263]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.68, 0.67, 1)
+theme_override_font_sizes/font_size = 11
+text = "UNITÀ PT-01 · NOVA EUROPA"
+
+[node name="Title" type="Label" parent="Scroll/Margin/Content/Header/HeaderRow/TitleBlock" unique_id=271615000]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 1, 0.97, 1)
+theme_override_font_sizes/font_size = 29
+text = "PROTOCOLLO TITAN"
+
+[node name="ClockBlock" type="VBoxContainer" parent="Scroll/Margin/Content/Header/HeaderRow" unique_id=513838983]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ClockCaption" type="Label" parent="Scroll/Margin/Content/Header/HeaderRow/ClockBlock" unique_id=2049552133]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.7, 0.69, 1)
+theme_override_font_sizes/font_size = 10
+text = "T− MISSIONE"
+horizontal_alignment = 2
+
+[node name="MissionClock" type="Label" parent="Scroll/Margin/Content/Header/HeaderRow/ClockBlock" unique_id=618239142]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.79, 0.42, 1)
+theme_override_font_sizes/font_size = 25
+text = "03:00"
+horizontal_alignment = 2
+
+[node name="SoundButton" type="Button" parent="Scroll/Margin/Content/Header/HeaderRow" unique_id=728439317]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(105, 48)
+layout_mode = 2
+text = "SUONO ON"
+
+[node name="MetersPanel" type="PanelContainer" parent="Scroll/Margin/Content" unique_id=1395630865]
+layout_mode = 2
+
+[node name="Meters" type="GridContainer" parent="Scroll/Margin/Content/MetersPanel" unique_id=1135746152]
+layout_mode = 2
+theme_override_constants/h_separation = 13
+theme_override_constants/v_separation = 8
+columns = 4
+
+[node name="IntegrityMeter" type="VBoxContainer" parent="Scroll/Margin/Content/MetersPanel/Meters" unique_id=283629669]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="IntegrityText" type="Label" parent="Scroll/Margin/Content/MetersPanel/Meters/IntegrityMeter" unique_id=1223094356]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "INTEGRITÀ 100%"
+
+[node name="IntegrityBar" type="ProgressBar" parent="Scroll/Margin/Content/MetersPanel/Meters/IntegrityMeter" unique_id=984648993]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 8)
+layout_mode = 2
+value = 100.0
+show_percentage = false
+
+[node name="EnergyMeter" type="VBoxContainer" parent="Scroll/Margin/Content/MetersPanel/Meters" unique_id=571719164]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EnergyText" type="Label" parent="Scroll/Margin/Content/MetersPanel/Meters/EnergyMeter" unique_id=1339258780]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.72, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "ENERGIA 100%"
+
+[node name="EnergyBar" type="ProgressBar" parent="Scroll/Margin/Content/MetersPanel/Meters/EnergyMeter" unique_id=804758359]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 8)
+layout_mode = 2
+value = 100.0
+show_percentage = false
+
+[node name="HeatMeter" type="VBoxContainer" parent="Scroll/Margin/Content/MetersPanel/Meters" unique_id=1236558745]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HeatText" type="Label" parent="Scroll/Margin/Content/MetersPanel/Meters/HeatMeter" unique_id=1136914010]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.33, 0.22, 1)
+theme_override_font_sizes/font_size = 11
+text = "CALORE 0%"
+
+[node name="HeatBar" type="ProgressBar" parent="Scroll/Margin/Content/MetersPanel/Meters/HeatMeter" unique_id=176495613]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 8)
+layout_mode = 2
+show_percentage = false
+
+[node name="CoolantMeter" type="VBoxContainer" parent="Scroll/Margin/Content/MetersPanel/Meters" unique_id=1039055978]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CoolantText" type="Label" parent="Scroll/Margin/Content/MetersPanel/Meters/CoolantMeter" unique_id=2020158579]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.39, 0.91, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "REFRIGERANTE 100%"
+
+[node name="CoolantBar" type="ProgressBar" parent="Scroll/Margin/Content/MetersPanel/Meters/CoolantMeter" unique_id=1061334515]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 8)
+layout_mode = 2
+value = 100.0
+show_percentage = false
+
+[node name="MissionMeta" type="HBoxContainer" parent="Scroll/Margin/Content" unique_id=2090608864]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="StatusLabel" type="Label" parent="Scroll/Margin/Content/MissionMeta" unique_id=462956551]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.42, 1, 0.8, 1)
+theme_override_font_sizes/font_size = 11
+text = "● SISTEMI OPERATIVI"
+
+[node name="ThreatsLabel" type="Label" parent="Scroll/Margin/Content/MissionMeta" unique_id=1220548031]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "MINACCE 0"
+
+[node name="CiviliansLabel" type="Label" parent="Scroll/Margin/Content/MissionMeta" unique_id=201134318]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "CIVILI 000"
+
+[node name="ScoreLabel" type="Label" parent="Scroll/Margin/Content/MissionMeta" unique_id=1279540298]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "PUNTI 00000"
+
+[node name="PlayArea" type="Container" parent="Scroll/Margin/Content" unique_id=2050493766]
+custom_minimum_size = Vector2(0, 430)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_responsive")
+
+[node name="AlertsColumn" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea" unique_id=1220303628]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="AlertsGrid" type="GridContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn" unique_id=542522076]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="RadarIdle" type="PanelContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsGrid" unique_id=1200630663]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 205)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="IdleContent" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsGrid/RadarIdle" unique_id=935977242]
+layout_mode = 2
+alignment = 1
+
+[node name="RadarCaption" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsGrid/RadarIdle/IdleContent" unique_id=403825807]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.42, 0.65, 0.62, 1)
+theme_override_font_sizes/font_size = 11
+text = "RADAR TATTICO"
+horizontal_alignment = 1
+
+[node name="SafeLabel" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsGrid/RadarIdle/IdleContent" unique_id=893026606]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 1, 0.97, 1)
+theme_override_font_sizes/font_size = 24
+text = "SETTORE SICURO"
+horizontal_alignment = 1
+
+[node name="IdleFeedback" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsGrid/RadarIdle/IdleContent" unique_id=154388376]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.68, 0.65, 1)
+theme_override_font_sizes/font_size = 12
+text = "In attesa di telemetria."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="FeedbackPanel" type="PanelContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn" unique_id=1400892240]
+layout_mode = 2
+theme_override_styles/panel = SubResource("FeedbackPanel")
+
+[node name="FeedbackRow" type="HBoxContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/FeedbackPanel" unique_id=1170851953]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="FeedbackCaption" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/FeedbackPanel/FeedbackRow" unique_id=493547658]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.54, 0.27, 1)
+theme_override_font_sizes/font_size = 10
+text = "COMANDO"
+
+[node name="FeedbackLabel" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/FeedbackPanel/FeedbackRow" unique_id=1980916624]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Tre emergenze guidate prepareranno i sistemi."
+autowrap_mode = 2
+
+[node name="ControlsPanel" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea" unique_id=1539737576]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="DirectionPanel" type="PanelContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel" unique_id=1981357587]
+layout_mode = 2
+
+[node name="DirectionContent" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel" unique_id=2071373893]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="DirectionHeading" type="HBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent" unique_id=1428674829]
+layout_mode = 2
+
+[node name="DirectionNumber" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionHeading" unique_id=878344570]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43, 0.85, 0.76, 1)
+text = "01"
+
+[node name="DirectionTitle" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionHeading" unique_id=373091709]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "  SELETTORE DIREZIONE"
+
+[node name="DirectionValue" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionHeading" unique_id=130007964]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.69, 0.3, 1)
+theme_override_font_sizes/font_size = 11
+text = "FRONTE"
+
+[node name="DirectionGrid" type="GridContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent" unique_id=310430361]
+layout_mode = 2
+theme_override_constants/h_separation = 6
+columns = 4
+
+[node name="LeftButton" type="Button" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid" unique_id=1721453060]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 66)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+text = "◀
+SINISTRA"
+
+[node name="FrontButton" type="Button" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid" unique_id=762491918]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 66)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_pressed = true
+text = "▲
+FRONTE"
+
+[node name="RightButton" type="Button" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid" unique_id=1057021852]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 66)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+text = "▶
+DESTRA"
+
+[node name="BelowButton" type="Button" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid" unique_id=1461121815]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 66)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+text = "▼
+SOTTO"
+
+[node name="SystemsPanel" type="PanelContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel" unique_id=339800165]
+layout_mode = 2
+
+[node name="SystemsContent" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel" unique_id=1078921713]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="SystemsHeading" type="HBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent" unique_id=1870837134]
+layout_mode = 2
+
+[node name="SystemsNumber" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsHeading" unique_id=709966101]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43, 0.85, 0.76, 1)
+text = "02"
+
+[node name="SystemsTitle" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsHeading" unique_id=788223366]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "  SISTEMI TITAN"
+
+[node name="SystemsReady" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsHeading" unique_id=2001637468]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.69, 0.3, 1)
+theme_override_font_sizes/font_size = 11
+text = "PRONTO"
+
+[node name="SystemsGrid" type="GridContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent" unique_id=1895828296]
+layout_mode = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 3
+
+[node name="ShieldButton" type="Button" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid" unique_id=257668271]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(95, 67)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SCUDO [1]
+−28 energia"
+
+[node name="LaserButton" type="Button" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid" unique_id=173862413]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(95, 67)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LASER [2]
+−8 E · +36 C"
+
+[node name="BoostButton" type="Button" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid" unique_id=2024292918]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(95, 67)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PROPULSORI [3]
+−5 E · +24 C"
+
+[node name="RescueButton" type="Button" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid" unique_id=336247007]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(95, 67)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SOCCORSO [4]
+Gratis"
+
+[node name="CoolButton" type="Button" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid" unique_id=118657326]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(95, 67)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "RAFFREDDA [5]
+−14 refrig."
+
+[node name="RepairButton" type="Button" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid" unique_id=1606122328]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(95, 67)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "RIPARA [6]
+−18 energia"
+
+[node name="IntroOverlay" type="ColorRect" parent="." unique_id=1062308037]
+unique_name_in_owner = true
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.005, 0.015, 0.02, 0.94)
+
+[node name="Center" type="CenterContainer" parent="IntroOverlay" unique_id=1858841409]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Briefing" type="PanelContainer" parent="IntroOverlay/Center" unique_id=1121963345]
+custom_minimum_size = Vector2(330, 0)
+layout_mode = 2
+
+[node name="BriefingMargin" type="MarginContainer" parent="IntroOverlay/Center/Briefing" unique_id=978581312]
+layout_mode = 2
+theme_override_constants/margin_left = 34
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 34
+theme_override_constants/margin_bottom = 28
+
+[node name="BriefingContent" type="VBoxContainer" parent="IntroOverlay/Center/Briefing/BriefingMargin" unique_id=245830172]
+layout_mode = 2
+theme_override_constants/separation = 13
+
+[node name="BriefingEyebrow" type="Label" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent" unique_id=1449753475]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.47, 0.7, 0.68, 1)
+theme_override_font_sizes/font_size = 11
+text = "COLLEGAMENTO NEURALE DISPONIBILE"
+horizontal_alignment = 1
+
+[node name="BriefingTitle" type="Label" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent" unique_id=1961780833]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.37, 0.14, 1)
+theme_override_font_sizes/font_size = 34
+text = "PROTOCOLLO TITAN"
+horizontal_alignment = 1
+
+[node name="BriefingText" type="Label" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent" unique_id=1775558827]
+layout_mode = 2
+text = "Le prime tre emergenze sono guidate e più lente. Dopo l’addestramento dovrai gestire più minacce contemporaneamente."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Tradeoffs" type="Label" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent" unique_id=1334226420]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.76, 0.43, 1)
+theme_override_font_sizes/font_size = 12
+text = "SCUDO: molta energia, nessun calore
+LASER / MOVIMENTO: poca energia, molto calore
+SOCCORSO: nessuna energia, solo per i civili"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent" unique_id=811046336]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+text = "AVVIA ADDESTRAMENTO"
+
+[node name="InputHint" type="Label" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent" unique_id=311832603]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.39, 0.53, 0.51, 1)
+theme_override_font_sizes/font_size = 10
+text = "Desktop: frecce + tasti 1–6 · Telefono: usa la pulsantiera"
+horizontal_alignment = 1
+
+[node name="ResultOverlay" type="ColorRect" parent="." unique_id=1567942790]
+unique_name_in_owner = true
+visible = false
+z_index = 11
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.005, 0.015, 0.02, 0.94)
+
+[node name="Center" type="CenterContainer" parent="ResultOverlay" unique_id=1304042437]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResultPanel" type="PanelContainer" parent="ResultOverlay/Center" unique_id=836869984]
+custom_minimum_size = Vector2(330, 0)
+layout_mode = 2
+
+[node name="ResultMargin" type="MarginContainer" parent="ResultOverlay/Center/ResultPanel" unique_id=386867986]
+layout_mode = 2
+theme_override_constants/margin_left = 34
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 34
+theme_override_constants/margin_bottom = 28
+
+[node name="ResultContent" type="VBoxContainer" parent="ResultOverlay/Center/ResultPanel/ResultMargin" unique_id=854863355]
+layout_mode = 2
+theme_override_constants/separation = 13
+
+[node name="ResultEyebrow" type="Label" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent" unique_id=1310462236]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.47, 0.7, 0.68, 1)
+theme_override_font_sizes/font_size = 11
+text = "RAPPORTO CONCLUSIVO PT-01"
+horizontal_alignment = 1
+
+[node name="ResultTitle" type="Label" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent" unique_id=480519459]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.74, 0.38, 1)
+theme_override_font_sizes/font_size = 28
+text = "MISSIONE COMPIUTA"
+horizontal_alignment = 1
+
+[node name="ResultReason" type="Label" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent" unique_id=634767366]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Nova Europa è salva."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ResultStats" type="Label" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent" unique_id=689606262]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.69, 0.9, 0.84, 1)
+theme_override_font_sizes/font_size = 16
+text = "PUNTEGGIO 0   ·   CIVILI 0   ·   INTEGRITÀ 100%"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent" unique_id=1996484374]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+text = "NUOVA MISSIONE"
