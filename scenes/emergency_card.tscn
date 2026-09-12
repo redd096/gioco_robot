@@ -1,8 +1,12 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://dvdte0mj6s0rj"]
 
-[ext_resource type="Script" path="res://scripts/emergency_card.gd" id="1"]
+[ext_resource type="Script" uid="uid://be7rjspf25swd" path="res://scripts/emergency_card.gd" id="1"]
 
 [sub_resource type="StyleBoxFlat" id="AlertPanel"]
+content_margin_left = 13.0
+content_margin_top = 11.0
+content_margin_right = 13.0
+content_margin_bottom = 11.0
 bg_color = Color(0.115, 0.025, 0.025, 0.98)
 border_width_left = 1
 border_width_top = 1
@@ -13,24 +17,20 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
-content_margin_left = 13.0
-content_margin_top = 11.0
-content_margin_right = 13.0
-content_margin_bottom = 11.0
 
-[node name="EmergencyCard" type="PanelContainer"]
+[node name="EmergencyCard" type="PanelContainer" unique_id=289055034]
 custom_minimum_size = Vector2(250, 156)
 theme_override_styles/panel = SubResource("AlertPanel")
 script = ExtResource("1")
 
-[node name="Content" type="VBoxContainer" parent="."]
+[node name="Content" type="VBoxContainer" parent="." unique_id=508234800]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Head" type="HBoxContainer" parent="Content"]
+[node name="Head" type="HBoxContainer" parent="Content" unique_id=735913350]
 layout_mode = 2
 
-[node name="CategoryLabel" type="Label" parent="Content/Head"]
+[node name="CategoryLabel" type="Label" parent="Content/Head" unique_id=217064657]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -38,14 +38,14 @@ theme_override_colors/font_color = Color(1, 0.53, 0.4, 1)
 theme_override_font_sizes/font_size = 11
 text = "EMERGENZA"
 
-[node name="TimerLabel" type="Label" parent="Content/Head"]
+[node name="TimerLabel" type="Label" parent="Content/Head" unique_id=368539479]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.75, 0.42, 1)
 theme_override_font_sizes/font_size = 12
 text = "12.0s"
 
-[node name="TitleLabel" type="Label" parent="Content"]
+[node name="TitleLabel" type="Label" parent="Content" unique_id=40905443]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 1, 0.98, 1)
@@ -53,7 +53,7 @@ theme_override_font_sizes/font_size = 19
 text = "MISSILI A SINISTRA"
 autowrap_mode = 2
 
-[node name="BodyLabel" type="Label" parent="Content"]
+[node name="BodyLabel" type="Label" parent="Content" unique_id=1339144998]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -62,7 +62,7 @@ theme_override_font_sizes/font_size = 13
 text = "Raffica di missili in arrivo da sinistra. Proteggi il fianco o scatta a destra."
 autowrap_mode = 2
 
-[node name="HintLabel" type="Label" parent="Content"]
+[node name="HintLabel" type="Label" parent="Content" unique_id=2033818933]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.78, 0.39, 1)
@@ -70,7 +70,7 @@ theme_override_font_sizes/font_size = 11
 text = "PROVA: SINISTRA + SCUDO"
 autowrap_mode = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="Content"]
+[node name="ProgressBar" type="ProgressBar" parent="Content" unique_id=3308293]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 7)
 layout_mode = 2

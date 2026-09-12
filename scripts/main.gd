@@ -89,6 +89,7 @@ func _ready() -> void:
 	grid_spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	alerts_grid.add_child(grid_spacer)
 	grid_spacer.hide()
+	_configure_visuals()
 	_load_preferences()
 	%StartButton.pressed.connect(start_mission)
 	%RestartButton.pressed.connect(start_mission)
@@ -443,10 +444,18 @@ func _render() -> void:
 
 func _render_direction() -> void:
 	%DirectionValue.text = DIRECTIONS[direction]
-	%LeftButton.set_pressed_no_signal(direction == "left")
-	%FrontButton.set_pressed_no_signal(direction == "front")
-	%RightButton.set_pressed_no_signal(direction == "right")
-	%BelowButton.set_pressed_no_signal(direction == "below")
+	var direction_buttons := {
+		"left": %LeftButton,
+		"front": %FrontButton,
+		"right": %RightButton,
+		"below": %BelowButton,
+	}
+	for id in direction_buttons:
+		var button := direction_buttons[id] as Button
+		var selected: bool = direction == id
+		button.set_pressed_no_signal(selected)
+		var arrow: Label = button.get_node("Content/Arrow")
+		arrow.add_theme_color_override("font_color", Color(1.0, 0.74, 0.43) if selected else Color(0.39, 0.85, 0.76))
 
 
 func _sync_alert_cards() -> void:
@@ -494,14 +503,14 @@ func _deny(system: String, resource: String, message: String) -> void:
 		"cool": %CoolButton,
 		"repair": %RepairButton,
 	}
-	_pulse_denied(buttons.get(system))
+	_pulse_denied(buttons.get(system) as Control)
 	var meters := {
 		"energy": %EnergyBar,
 		"heat": %HeatBar,
 		"coolant": %CoolantBar,
 	}
 	if resource != "":
-		_pulse_denied(meters.get(resource))
+		_pulse_denied(meters.get(resource) as Control)
 	_pulse_denied(%FeedbackPanel)
 
 
@@ -558,13 +567,13 @@ func _on_viewport_resized() -> void:
 
 func _toggle_alarm_sound() -> void:
 	alarm_sounds = not alarm_sounds
-	%AlarmSoundButton.text = "ALLARMI ON" if alarm_sounds else "ALLARMI OFF"
+	_refresh_header_buttons()
 	_save_preferences()
 
 
 func _toggle_button_sound() -> void:
 	button_sounds = not button_sounds
-	%ButtonSoundButton.text = "PULSANTI ON" if button_sounds else "PULSANTI OFF"
+	_refresh_header_buttons()
 	if button_sounds:
 		_button_beep(520.0, 0.07)
 	_save_preferences()
@@ -573,7 +582,7 @@ func _toggle_button_sound() -> void:
 func _toggle_handedness() -> void:
 	left_handed = not left_handed
 	play_area.set_left_handed(left_handed)
-	%HandednessButton.text = "COMANDI SX" if left_handed else "COMANDI DX"
+	_refresh_header_buttons()
 	_button_beep(520.0, 0.07)
 	_save_preferences()
 
@@ -584,10 +593,132 @@ func _load_preferences() -> void:
 		alarm_sounds = bool(config.get_value("audio", "alarms", true))
 		button_sounds = bool(config.get_value("audio", "buttons", true))
 		left_handed = bool(config.get_value("layout", "left_handed", false))
+	_refresh_header_buttons()
+	play_area.set_left_handed(left_handed)
+
+
+func _configure_visuals() -> void:
+	var direction_buttons: Array[Button] = [%LeftButton, %FrontButton, %RightButton, %BelowButton]
+	for button in direction_buttons:
+		_style_direction_button(button)
+		_connect_press_animation(button)
+	var system_styles := [
+		[%ShieldButton, Color(0.025, 0.1, 0.17), Color(0.27, 0.55, 0.82)],
+		[%LaserButton, Color(0.17, 0.05, 0.02), Color(0.78, 0.3, 0.13)],
+		[%BoostButton, Color(0.14, 0.075, 0.02), Color(0.78, 0.46, 0.14)],
+		[%RescueButton, Color(0.025, 0.13, 0.095), Color(0.25, 0.58, 0.43)],
+		[%CoolButton, Color(0.02, 0.11, 0.15), Color(0.16, 0.53, 0.68)],
+		[%RepairButton, Color(0.13, 0.1, 0.025), Color(0.58, 0.46, 0.18)],
+	]
+	for entry in system_styles:
+		var system_button := entry[0] as Button
+		var background: Color = entry[1]
+		var accent: Color = entry[2]
+		_style_system_button(system_button, background, accent)
+		_connect_press_animation(system_button)
+	_style_header_button(%HandednessButton, true)
+
+
+func _style_direction_button(button: Button) -> void:
+	button.add_theme_stylebox_override("normal", _button_style(Color(0.025, 0.1, 0.115), Color(0.18, 0.38, 0.4), 4))
+	button.add_theme_stylebox_override("hover", _button_style(Color(0.04, 0.16, 0.17), Color(0.36, 0.73, 0.66), 4))
+	button.add_theme_stylebox_override("pressed", _button_style(Color(0.35, 0.12, 0.03), Color(1.0, 0.58, 0.25), 1))
+	button.add_theme_stylebox_override("focus", _button_style(Color(0.04, 0.16, 0.17), Color(0.36, 0.73, 0.66), 3))
+	_add_button_gradient(button, Color(0.025, 0.1, 0.115), Color(0.07, 0.2, 0.2))
+
+
+func _style_system_button(button: Button, background: Color, accent: Color) -> void:
+	button.add_theme_stylebox_override("normal", _button_style(background, accent.darkened(0.12), 4))
+	button.add_theme_stylebox_override("hover", _button_style(background.lightened(0.09), accent, 4))
+	button.add_theme_stylebox_override("pressed", _button_style(background.lightened(0.16), accent.lightened(0.12), 1))
+	button.add_theme_stylebox_override("focus", _button_style(background.lightened(0.08), accent, 3))
+	_add_button_gradient(button, background.lightened(0.06), background.darkened(0.32))
+
+
+func _style_header_button(button: Button, enabled: bool) -> void:
+	var background := Color(0.025, 0.13, 0.15) if enabled else Color(0.17, 0.055, 0.018)
+	var accent := Color(0.22, 0.57, 0.59) if enabled else Color(0.78, 0.31, 0.13)
+	var font_color := Color(0.68, 0.9, 0.86) if enabled else Color(1.0, 0.63, 0.43)
+	button.add_theme_stylebox_override("normal", _button_style(background, accent, 2))
+	button.add_theme_stylebox_override("hover", _button_style(background.lightened(0.08), accent.lightened(0.1), 2))
+	button.add_theme_stylebox_override("pressed", _button_style(background.lightened(0.13), accent.lightened(0.15), 1))
+	button.add_theme_stylebox_override("focus", _button_style(background.lightened(0.08), accent, 2))
+	button.add_theme_color_override("font_color", font_color)
+	button.add_theme_color_override("font_hover_color", font_color.lightened(0.1))
+	button.add_theme_color_override("font_pressed_color", font_color)
+
+
+func _refresh_header_buttons() -> void:
 	%AlarmSoundButton.text = "ALLARMI ON" if alarm_sounds else "ALLARMI OFF"
 	%ButtonSoundButton.text = "PULSANTI ON" if button_sounds else "PULSANTI OFF"
 	%HandednessButton.text = "COMANDI SX" if left_handed else "COMANDI DX"
-	play_area.set_left_handed(left_handed)
+	_style_header_button(%AlarmSoundButton, alarm_sounds)
+	_style_header_button(%ButtonSoundButton, button_sounds)
+	_style_header_button(%HandednessButton, true)
+
+
+func _button_style(background: Color, border: Color, bottom_width: int) -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = background
+	style.border_color = border
+	style.border_width_left = 1
+	style.border_width_top = 1
+	style.border_width_right = 1
+	style.border_width_bottom = 1
+	style.border_width_bottom = bottom_width
+	style.corner_radius_top_left = 2
+	style.corner_radius_top_right = 2
+	style.corner_radius_bottom_right = 2
+	style.corner_radius_bottom_left = 2
+	style.content_margin_left = 7.0
+	style.content_margin_top = 6.0
+	style.content_margin_right = 7.0
+	style.content_margin_bottom = 6.0
+	return style
+
+
+func _add_button_gradient(button: Button, start_color: Color, end_color: Color) -> void:
+	if button.has_node("Gradient"):
+		return
+	start_color.a = 0.72
+	end_color.a = 0.72
+	var gradient := Gradient.new()
+	gradient.colors = PackedColorArray([start_color, end_color])
+	var texture := GradientTexture2D.new()
+	texture.gradient = gradient
+	texture.width = 256
+	texture.height = 96
+	texture.fill_from = Vector2(0.0, 0.0)
+	texture.fill_to = Vector2(1.0, 1.0)
+	var overlay := TextureRect.new()
+	overlay.name = "Gradient"
+	overlay.texture = texture
+	overlay.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	overlay.stretch_mode = TextureRect.STRETCH_SCALE
+	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	button.add_child(overlay)
+	button.move_child(overlay, 0)
+	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+
+func _connect_press_animation(button: Button) -> void:
+	button.button_down.connect(_press_button.bind(button))
+	button.button_up.connect(_release_button.bind(button))
+
+
+func _press_button(button: Button) -> void:
+	if button.get_meta("visually_pressed", false):
+		return
+	button.set_meta("visually_pressed", true)
+	button.set_meta("press_origin_y", button.position.y)
+	button.position.y += 3.0
+
+
+func _release_button(button: Button) -> void:
+	if not button.get_meta("visually_pressed", false):
+		return
+	button.position.y = float(button.get_meta("press_origin_y", button.position.y - 3.0))
+	button.set_meta("visually_pressed", false)
 
 
 func _save_preferences() -> void:

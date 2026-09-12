@@ -21,6 +21,7 @@ La UI è composta da nodi `Control` nelle scene `main.tscn` ed `emergency_card.t
 - I suoni degli allarmi e quelli dei pulsanti si possono disattivare separatamente.
 - Un comando senza risorse fa lampeggiare e scuotere sia il pulsante sia la barra interessata.
 - In landscape le card mantengono una griglia stabile e non cambiano larghezza quando il loro numero è dispari.
+- La console usa pannelli azzurri, pulsanti colorati per sistema, costi e scorciatoie separati e animazioni di pressione.
 
 ## Struttura
 
