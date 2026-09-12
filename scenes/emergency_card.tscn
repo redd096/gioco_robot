@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://be7rjspf25swd" path="res://scripts/emergency_card.gd" id="1"]
 
+[sub_resource type="SystemFont" id="AlertTitleFont"]
+font_names = PackedStringArray("Arial", "Liberation Sans", "Noto Sans")
+font_weight = 750
+font_italic = true
+
 [sub_resource type="StyleBoxFlat" id="AlertPanel"]
 content_margin_left = 13.0
 content_margin_top = 11.0
@@ -49,6 +54,7 @@ text = "12.0s"
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 1, 0.98, 1)
+theme_override_fonts/font = SubResource("AlertTitleFont")
 theme_override_font_sizes/font_size = 19
 text = "MISSILI A SINISTRA"
 autowrap_mode = 2

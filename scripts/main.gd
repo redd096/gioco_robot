@@ -403,9 +403,12 @@ func _finish(won: bool, reason: String) -> void:
 		return
 	phase = "won" if won else "lost"
 	%ResultTitle.text = "MISSIONE COMPIUTA · GRADO %s" % _grade() if won else "MISSIONE FALLITA"
-	%ResultTitle.modulate = Color(1.0, 0.76, 0.4) if won else Color(1.0, 0.3, 0.23)
+	%ResultTitle.modulate = Color.WHITE
+	%ResultTitle.add_theme_color_override("font_color", Color(1.0, 0.76, 0.4) if won else Color(1.0, 0.3, 0.23))
 	%ResultReason.text = reason
-	%ResultStats.text = "PUNTEGGIO %d   ·   CIVILI %d   ·   INTEGRITÀ %d%%" % [score, civilians, roundi(integrity)]
+	%ResultScore.text = str(score)
+	%ResultCivilians.text = str(civilians)
+	%ResultIntegrity.text = "%d%%" % roundi(integrity)
 	result_overlay.show()
 
 
@@ -421,10 +424,10 @@ func _grade() -> String:
 
 func _render() -> void:
 	%MissionClock.text = _format_time(mission_time)
-	%IntegrityText.text = "INTEGRITÀ %d%%" % roundi(integrity)
-	%EnergyText.text = "ENERGIA %d%%" % roundi(energy)
-	%HeatText.text = "CALORE %d%%" % roundi(heat)
-	%CoolantText.text = "REFRIGERANTE %d%%" % roundi(coolant)
+	%IntegrityText.text = "%d%%" % roundi(integrity)
+	%EnergyText.text = "%d%%" % roundi(energy)
+	%HeatText.text = "%d%%" % roundi(heat)
+	%CoolantText.text = "%d%%" % roundi(coolant)
 	%IntegrityBar.value = integrity
 	%EnergyBar.value = energy
 	%HeatBar.value = heat
@@ -557,8 +560,20 @@ func _on_viewport_resized() -> void:
 	var viewport_size := get_viewport_rect().size
 	alerts_grid.columns = 2 if viewport_size.x >= 920.0 and viewport_size.x > viewport_size.y else 1
 	var portrait := viewport_size.x < viewport_size.y * 1.05
-	%Title.add_theme_font_size_override("font_size", 23 if portrait else 29)
-	%HeaderControls.columns = 2 if portrait else 3
+	%ProtocolloTitle.add_theme_font_size_override("font_size", 17 if portrait else 29)
+	%TitanTitle.add_theme_font_size_override("font_size", 17 if portrait else 29)
+	%ResultTitle.add_theme_font_size_override("font_size", 27 if portrait else 41)
+	var result_width := minf(570.0, viewport_size.x - 24.0)
+	$ResultOverlay/Center/ResultPanel.custom_minimum_size = Vector2(result_width, 380.0)
+	var result_margin := 24 if portrait else 48
+	for margin_name in ["margin_left", "margin_top", "margin_right", "margin_bottom"]:
+		$ResultOverlay/Center/ResultPanel/ResultMargin.add_theme_constant_override(margin_name, result_margin)
+	%HeaderControls.columns = 1 if portrait else 3
+	$Scroll/Margin/Content/Header/HeaderRow.add_theme_constant_override("separation", 6 if portrait else 14)
+	$Scroll/Margin/Content/MetersPanel/Meters.columns = 2 if portrait else 4
+	for header_button in [%AlarmSoundButton, %ButtonSoundButton, %HandednessButton]:
+		header_button.custom_minimum_size = Vector2(92.0, 36.0) if portrait else Vector2(112.0, 40.0)
+		header_button.add_theme_font_size_override("font_size", 9 if portrait else 11)
 	%DirectionGrid.columns = 2 if portrait else 4
 	%SystemsGrid.columns = 2 if portrait else 3
 	play_area.queue_sort()
@@ -620,29 +635,29 @@ func _configure_visuals() -> void:
 
 
 func _style_direction_button(button: Button) -> void:
-	button.add_theme_stylebox_override("normal", _button_style(Color(0.025, 0.1, 0.115), Color(0.18, 0.38, 0.4), 4))
-	button.add_theme_stylebox_override("hover", _button_style(Color(0.04, 0.16, 0.17), Color(0.36, 0.73, 0.66), 4))
-	button.add_theme_stylebox_override("pressed", _button_style(Color(0.35, 0.12, 0.03), Color(1.0, 0.58, 0.25), 1))
-	button.add_theme_stylebox_override("focus", _button_style(Color(0.04, 0.16, 0.17), Color(0.36, 0.73, 0.66), 3))
-	_add_button_gradient(button, Color(0.025, 0.1, 0.115), Color(0.07, 0.2, 0.2))
+	button.add_theme_stylebox_override("normal", _button_style(Color(0.018, 0.075, 0.085), Color(0.18, 0.46, 0.48)))
+	button.add_theme_stylebox_override("hover", _button_style(Color(0.025, 0.12, 0.125), Color(0.42, 0.86, 0.78)))
+	button.add_theme_stylebox_override("pressed", _button_style(Color(0.36, 0.105, 0.025), Color(1.0, 0.43, 0.18)))
+	button.add_theme_stylebox_override("focus", _button_style(Color(0.025, 0.12, 0.125), Color(0.42, 0.86, 0.78)))
+	_add_button_gradient(button, Color(0.04, 0.13, 0.14), Color(0.01, 0.035, 0.04))
 
 
 func _style_system_button(button: Button, background: Color, accent: Color) -> void:
-	button.add_theme_stylebox_override("normal", _button_style(background, accent.darkened(0.12), 4))
-	button.add_theme_stylebox_override("hover", _button_style(background.lightened(0.09), accent, 4))
-	button.add_theme_stylebox_override("pressed", _button_style(background.lightened(0.16), accent.lightened(0.12), 1))
-	button.add_theme_stylebox_override("focus", _button_style(background.lightened(0.08), accent, 3))
-	_add_button_gradient(button, background.lightened(0.06), background.darkened(0.32))
+	button.add_theme_stylebox_override("normal", _button_style(background.darkened(0.2), accent.darkened(0.08)))
+	button.add_theme_stylebox_override("hover", _button_style(background.lightened(0.08), accent.lightened(0.12)))
+	button.add_theme_stylebox_override("pressed", _button_style(background.lightened(0.15), accent.lightened(0.18)))
+	button.add_theme_stylebox_override("focus", _button_style(background.lightened(0.06), accent))
+	_add_button_gradient(button, background.lightened(0.12), background.darkened(0.42))
 
 
 func _style_header_button(button: Button, enabled: bool) -> void:
 	var background := Color(0.025, 0.13, 0.15) if enabled else Color(0.17, 0.055, 0.018)
 	var accent := Color(0.22, 0.57, 0.59) if enabled else Color(0.78, 0.31, 0.13)
 	var font_color := Color(0.68, 0.9, 0.86) if enabled else Color(1.0, 0.63, 0.43)
-	button.add_theme_stylebox_override("normal", _button_style(background, accent, 2))
-	button.add_theme_stylebox_override("hover", _button_style(background.lightened(0.08), accent.lightened(0.1), 2))
-	button.add_theme_stylebox_override("pressed", _button_style(background.lightened(0.13), accent.lightened(0.15), 1))
-	button.add_theme_stylebox_override("focus", _button_style(background.lightened(0.08), accent, 2))
+	button.add_theme_stylebox_override("normal", _button_style(background, accent))
+	button.add_theme_stylebox_override("hover", _button_style(background.lightened(0.08), accent.lightened(0.1)))
+	button.add_theme_stylebox_override("pressed", _button_style(background.lightened(0.13), accent.lightened(0.15)))
+	button.add_theme_stylebox_override("focus", _button_style(background.lightened(0.08), accent))
 	button.add_theme_color_override("font_color", font_color)
 	button.add_theme_color_override("font_hover_color", font_color.lightened(0.1))
 	button.add_theme_color_override("font_pressed_color", font_color)
@@ -657,7 +672,7 @@ func _refresh_header_buttons() -> void:
 	_style_header_button(%HandednessButton, true)
 
 
-func _button_style(background: Color, border: Color, bottom_width: int) -> StyleBoxFlat:
+func _button_style(background: Color, border: Color) -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
 	style.bg_color = background
 	style.border_color = border
@@ -665,11 +680,6 @@ func _button_style(background: Color, border: Color, bottom_width: int) -> Style
 	style.border_width_top = 1
 	style.border_width_right = 1
 	style.border_width_bottom = 1
-	style.border_width_bottom = bottom_width
-	style.corner_radius_top_left = 2
-	style.corner_radius_top_right = 2
-	style.corner_radius_bottom_right = 2
-	style.corner_radius_bottom_left = 2
 	style.content_margin_left = 7.0
 	style.content_margin_top = 6.0
 	style.content_margin_right = 7.0
@@ -680,8 +690,8 @@ func _button_style(background: Color, border: Color, bottom_width: int) -> Style
 func _add_button_gradient(button: Button, start_color: Color, end_color: Color) -> void:
 	if button.has_node("Gradient"):
 		return
-	start_color.a = 0.72
-	end_color.a = 0.72
+	start_color.a = 0.34
+	end_color.a = 0.34
 	var gradient := Gradient.new()
 	gradient.colors = PackedColorArray([start_color, end_color])
 	var texture := GradientTexture2D.new()
