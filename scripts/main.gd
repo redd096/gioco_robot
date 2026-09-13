@@ -565,9 +565,13 @@ func _on_viewport_resized() -> void:
 	%ResultTitle.add_theme_font_size_override("font_size", 27 if portrait else 41)
 	var result_width := minf(570.0, viewport_size.x - 24.0)
 	$ResultOverlay/Center/ResultPanel.custom_minimum_size = Vector2(result_width, 380.0)
+	# $IntroOverlay/Center/Briefing.custom_minimum_size = Vector2(result_width, 565.0)
 	var result_margin := 24 if portrait else 48
 	for margin_name in ["margin_left", "margin_top", "margin_right", "margin_bottom"]:
 		$ResultOverlay/Center/ResultPanel/ResultMargin.add_theme_constant_override(margin_name, result_margin)
+		$IntroOverlay/Center/Briefing/BriefingMargin.add_theme_constant_override(margin_name, result_margin)
+	%BriefingProtocollo.add_theme_font_size_override("font_size", 31 if portrait else 42)
+	%BriefingTitan.add_theme_font_size_override("font_size", 31 if portrait else 42)
 	%HeaderControls.columns = 1 if portrait else 3
 	$Scroll/Margin/Content/Header/HeaderRow.add_theme_constant_override("separation", 6 if portrait else 14)
 	$Scroll/Margin/Content/MetersPanel/Meters.columns = 2 if portrait else 4
@@ -618,12 +622,12 @@ func _configure_visuals() -> void:
 		_style_direction_button(button)
 		_connect_press_animation(button)
 	var system_styles := [
-		[%ShieldButton, Color(0.025, 0.1, 0.17), Color(0.27, 0.55, 0.82)],
-		[%LaserButton, Color(0.17, 0.05, 0.02), Color(0.78, 0.3, 0.13)],
-		[%BoostButton, Color(0.14, 0.075, 0.02), Color(0.78, 0.46, 0.14)],
-		[%RescueButton, Color(0.025, 0.13, 0.095), Color(0.25, 0.58, 0.43)],
-		[%CoolButton, Color(0.02, 0.11, 0.15), Color(0.16, 0.53, 0.68)],
-		[%RepairButton, Color(0.13, 0.1, 0.025), Color(0.58, 0.46, 0.18)],
+		[%ShieldButton, Color(0.018, 0.055, 0.085), Color(0.18, 0.55, 0.78)],
+		[%LaserButton, Color(0.09, 0.022, 0.016), Color(0.82, 0.25, 0.1)],
+		[%BoostButton, Color(0.085, 0.045, 0.012), Color(0.84, 0.49, 0.08)],
+		[%RescueButton, Color(0.015, 0.075, 0.052), Color(0.19, 0.65, 0.45)],
+		[%CoolButton, Color(0.012, 0.065, 0.085), Color(0.13, 0.58, 0.75)],
+		[%RepairButton, Color(0.075, 0.065, 0.012), Color(0.68, 0.55, 0.12)],
 	]
 	for entry in system_styles:
 		var system_button := entry[0] as Button
@@ -635,19 +639,19 @@ func _configure_visuals() -> void:
 
 
 func _style_direction_button(button: Button) -> void:
-	button.add_theme_stylebox_override("normal", _button_style(Color(0.018, 0.075, 0.085), Color(0.18, 0.46, 0.48)))
-	button.add_theme_stylebox_override("hover", _button_style(Color(0.025, 0.12, 0.125), Color(0.42, 0.86, 0.78)))
-	button.add_theme_stylebox_override("pressed", _button_style(Color(0.36, 0.105, 0.025), Color(1.0, 0.43, 0.18)))
-	button.add_theme_stylebox_override("focus", _button_style(Color(0.025, 0.12, 0.125), Color(0.42, 0.86, 0.78)))
-	_add_button_gradient(button, Color(0.04, 0.13, 0.14), Color(0.01, 0.035, 0.04))
+	button.add_theme_stylebox_override("normal", _button_style(Color(0.012, 0.047, 0.052), Color(0.16, 0.48, 0.5)))
+	button.add_theme_stylebox_override("hover", _button_style(Color(0.018, 0.09, 0.095), Color(0.4, 0.9, 0.8)))
+	button.add_theme_stylebox_override("pressed", _button_style(Color(0.42, 0.105, 0.025), Color(1.0, 0.4, 0.14)))
+	button.add_theme_stylebox_override("focus", _button_style(Color(0.018, 0.09, 0.095), Color(0.4, 0.9, 0.8)))
+	_add_button_gradient(button, Color(0.025, 0.1, 0.1), Color(0.004, 0.018, 0.022))
 
 
 func _style_system_button(button: Button, background: Color, accent: Color) -> void:
-	button.add_theme_stylebox_override("normal", _button_style(background.darkened(0.2), accent.darkened(0.08)))
-	button.add_theme_stylebox_override("hover", _button_style(background.lightened(0.08), accent.lightened(0.12)))
-	button.add_theme_stylebox_override("pressed", _button_style(background.lightened(0.15), accent.lightened(0.18)))
-	button.add_theme_stylebox_override("focus", _button_style(background.lightened(0.06), accent))
-	_add_button_gradient(button, background.lightened(0.12), background.darkened(0.42))
+	button.add_theme_stylebox_override("normal", _button_style(background, accent))
+	button.add_theme_stylebox_override("hover", _button_style(background.lightened(0.045), accent.lightened(0.16)))
+	button.add_theme_stylebox_override("pressed", _button_style(background.lightened(0.08), accent.lightened(0.2)))
+	button.add_theme_stylebox_override("focus", _button_style(background.lightened(0.035), accent.lightened(0.08)))
+	_add_button_gradient(button, background.lightened(0.07), background.darkened(0.22))
 
 
 func _style_header_button(button: Button, enabled: bool) -> void:
@@ -690,8 +694,8 @@ func _button_style(background: Color, border: Color) -> StyleBoxFlat:
 func _add_button_gradient(button: Button, start_color: Color, end_color: Color) -> void:
 	if button.has_node("Gradient"):
 		return
-	start_color.a = 0.34
-	end_color.a = 0.34
+	start_color.a = 0.18
+	end_color.a = 0.18
 	var gradient := Gradient.new()
 	gradient.colors = PackedColorArray([start_color, end_color])
 	var texture := GradientTexture2D.new()

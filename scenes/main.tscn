@@ -143,7 +143,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.008, 0.026, 0.034, 1)
 
-[node name="ImpactFlash" type="ColorRect" parent="." unique_id=1277596072]
+[node name="ImpactFlash" type="ColorRect" parent="." unique_id=314536460]
 unique_name_in_owner = true
 z_index = 8
 layout_mode = 1
@@ -199,10 +199,10 @@ theme_override_colors/font_color = Color(0.45, 0.68, 0.67, 1)
 theme_override_font_sizes/font_size = 11
 text = "UNITÀ PT-01 · NOVA EUROPA"
 
-[node name="TitleLine" type="HBoxContainer" parent="Scroll/Margin/Content/Header/HeaderRow/TitleBlock" unique_id=387371726]
+[node name="TitleLine" type="HBoxContainer" parent="Scroll/Margin/Content/Header/HeaderRow/TitleBlock" unique_id=18527764]
 layout_mode = 2
 
-[node name="ProtocolloTitle" type="Label" parent="Scroll/Margin/Content/Header/HeaderRow/TitleBlock/TitleLine" unique_id=1526234106]
+[node name="ProtocolloTitle" type="Label" parent="Scroll/Margin/Content/Header/HeaderRow/TitleBlock/TitleLine" unique_id=1433261463]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94, 1, 0.97, 1)
@@ -210,7 +210,7 @@ theme_override_fonts/font = SubResource("SansBoldItalic")
 theme_override_font_sizes/font_size = 29
 text = "PROTOCOLLO"
 
-[node name="TitanTitle" type="Label" parent="Scroll/Margin/Content/Header/HeaderRow/TitleBlock/TitleLine" unique_id=1014745773]
+[node name="TitanTitle" type="Label" parent="Scroll/Margin/Content/Header/HeaderRow/TitleBlock/TitleLine" unique_id=1480839419]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.32, 0.16, 1)
@@ -218,7 +218,7 @@ theme_override_fonts/font = SubResource("SansBoldItalic")
 theme_override_font_sizes/font_size = 29
 text = "TITAN"
 
-[node name="ClockAccent" type="ColorRect" parent="Scroll/Margin/Content/Header/HeaderRow" unique_id=1163921330]
+[node name="ClockAccent" type="ColorRect" parent="Scroll/Margin/Content/Header/HeaderRow" unique_id=542088159]
 custom_minimum_size = Vector2(3, 42)
 layout_mode = 2
 mouse_filter = 2
@@ -243,28 +243,28 @@ theme_override_font_sizes/font_size = 25
 text = "03:00"
 horizontal_alignment = 2
 
-[node name="HeaderControls" type="GridContainer" parent="Scroll/Margin/Content/Header/HeaderRow" unique_id=1570056181]
+[node name="HeaderControls" type="GridContainer" parent="Scroll/Margin/Content/Header/HeaderRow" unique_id=1913795701]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 3
 
-[node name="AlarmSoundButton" type="Button" parent="Scroll/Margin/Content/Header/HeaderRow/HeaderControls" unique_id=1384391982]
+[node name="AlarmSoundButton" type="Button" parent="Scroll/Margin/Content/Header/HeaderRow/HeaderControls" unique_id=1323359982]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(112, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "ALLARMI ON"
 
-[node name="ButtonSoundButton" type="Button" parent="Scroll/Margin/Content/Header/HeaderRow/HeaderControls" unique_id=700751466]
+[node name="ButtonSoundButton" type="Button" parent="Scroll/Margin/Content/Header/HeaderRow/HeaderControls" unique_id=819470494]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(112, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "PULSANTI ON"
 
-[node name="HandednessButton" type="Button" parent="Scroll/Margin/Content/Header/HeaderRow/HeaderControls" unique_id=1767147132]
+[node name="HandednessButton" type="Button" parent="Scroll/Margin/Content/Header/HeaderRow/HeaderControls" unique_id=1579179984]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(112, 40)
 layout_mode = 2
@@ -285,10 +285,10 @@ columns = 4
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="IntegrityHeading" type="HBoxContainer" parent="Scroll/Margin/Content/MetersPanel/Meters/IntegrityMeter" unique_id=1006526467]
+[node name="IntegrityHeading" type="HBoxContainer" parent="Scroll/Margin/Content/MetersPanel/Meters/IntegrityMeter" unique_id=33081105]
 layout_mode = 2
 
-[node name="Caption" type="Label" parent="Scroll/Margin/Content/MetersPanel/Meters/IntegrityMeter/IntegrityHeading" unique_id=1869330454]
+[node name="Caption" type="Label" parent="Scroll/Margin/Content/MetersPanel/Meters/IntegrityMeter/IntegrityHeading" unique_id=485177286]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.56, 0.62, 0.61, 1)
@@ -314,10 +314,10 @@ show_percentage = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="EnergyHeading" type="HBoxContainer" parent="Scroll/Margin/Content/MetersPanel/Meters/EnergyMeter" unique_id=708047655]
+[node name="EnergyHeading" type="HBoxContainer" parent="Scroll/Margin/Content/MetersPanel/Meters/EnergyMeter" unique_id=1492978137]
 layout_mode = 2
 
-[node name="Caption" type="Label" parent="Scroll/Margin/Content/MetersPanel/Meters/EnergyMeter/EnergyHeading" unique_id=1719180416]
+[node name="Caption" type="Label" parent="Scroll/Margin/Content/MetersPanel/Meters/EnergyMeter/EnergyHeading" unique_id=2033244284]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.56, 0.62, 0.61, 1)
@@ -343,10 +343,10 @@ show_percentage = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HeatHeading" type="HBoxContainer" parent="Scroll/Margin/Content/MetersPanel/Meters/HeatMeter" unique_id=858444943]
+[node name="HeatHeading" type="HBoxContainer" parent="Scroll/Margin/Content/MetersPanel/Meters/HeatMeter" unique_id=456168476]
 layout_mode = 2
 
-[node name="Caption" type="Label" parent="Scroll/Margin/Content/MetersPanel/Meters/HeatMeter/HeatHeading" unique_id=1926842080]
+[node name="Caption" type="Label" parent="Scroll/Margin/Content/MetersPanel/Meters/HeatMeter/HeatHeading" unique_id=2094999713]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.56, 0.62, 0.61, 1)
@@ -371,10 +371,10 @@ show_percentage = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CoolantHeading" type="HBoxContainer" parent="Scroll/Margin/Content/MetersPanel/Meters/CoolantMeter" unique_id=1532514864]
+[node name="CoolantHeading" type="HBoxContainer" parent="Scroll/Margin/Content/MetersPanel/Meters/CoolantMeter" unique_id=1488497537]
 layout_mode = 2
 
-[node name="Caption" type="Label" parent="Scroll/Margin/Content/MetersPanel/Meters/CoolantMeter/CoolantHeading" unique_id=1790184965]
+[node name="Caption" type="Label" parent="Scroll/Margin/Content/MetersPanel/Meters/CoolantMeter/CoolantHeading" unique_id=346005739]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.56, 0.62, 0.61, 1)
@@ -436,13 +436,19 @@ script = ExtResource("2_responsive")
 layout_mode = 2
 theme_override_constants/separation = 7
 
-[node name="AlertsScroll" type="ScrollContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn" unique_id=1975848832]
-custom_minimum_size = Vector2(0, 248)
+[node name="AlertsScroll" type="ScrollContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn" unique_id=83401098]
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="AlertsGrid" type="GridContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll" unique_id=542522076]
+[node name="AlertsStack" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll" unique_id=1630232937]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 7
+
+[node name="AlertsGrid" type="GridContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsStack" unique_id=542522076]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -450,7 +456,7 @@ theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 columns = 2
 
-[node name="RadarIdle" type="PanelContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsGrid" unique_id=1200630663]
+[node name="RadarIdle" type="PanelContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsStack/AlertsGrid" unique_id=1200630663]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(260, 205)
 layout_mode = 2
@@ -458,25 +464,25 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("SectionPanel")
 
-[node name="IdleContent" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsGrid/RadarIdle" unique_id=935977242]
+[node name="IdleContent" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsStack/AlertsGrid/RadarIdle" unique_id=935977242]
 layout_mode = 2
 alignment = 1
 
-[node name="RadarCaption" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsGrid/RadarIdle/IdleContent" unique_id=403825807]
+[node name="RadarCaption" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsStack/AlertsGrid/RadarIdle/IdleContent" unique_id=403825807]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.42, 0.65, 0.62, 1)
 theme_override_font_sizes/font_size = 11
 text = "RADAR TATTICO"
 horizontal_alignment = 1
 
-[node name="SafeLabel" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsGrid/RadarIdle/IdleContent" unique_id=893026606]
+[node name="SafeLabel" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsStack/AlertsGrid/RadarIdle/IdleContent" unique_id=893026606]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.91, 1, 0.97, 1)
 theme_override_font_sizes/font_size = 24
 text = "SETTORE SICURO"
 horizontal_alignment = 1
 
-[node name="IdleFeedback" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsGrid/RadarIdle/IdleContent" unique_id=154388376]
+[node name="IdleFeedback" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsStack/AlertsGrid/RadarIdle/IdleContent" unique_id=154388376]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5, 0.68, 0.65, 1)
@@ -485,24 +491,24 @@ text = "In attesa di telemetria."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="FeedbackPanel" type="PanelContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn" unique_id=1400892240]
+[node name="FeedbackPanel" type="PanelContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsStack" unique_id=1400892240]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 theme_override_styles/panel = SubResource("FeedbackPanel")
 
-[node name="FeedbackRow" type="HBoxContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/FeedbackPanel" unique_id=1170851953]
+[node name="FeedbackRow" type="HBoxContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsStack/FeedbackPanel" unique_id=1170851953]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="FeedbackCaption" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/FeedbackPanel/FeedbackRow" unique_id=493547658]
+[node name="FeedbackCaption" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsStack/FeedbackPanel/FeedbackRow" unique_id=493547658]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.54, 0.27, 1)
 theme_override_font_sizes/font_size = 10
 text = "COMANDO"
 
-[node name="FeedbackLabel" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/FeedbackPanel/FeedbackRow" unique_id=1980916624]
+[node name="FeedbackLabel" type="Label" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsStack/FeedbackPanel/FeedbackRow" unique_id=1980916624]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -530,7 +536,7 @@ custom_minimum_size = Vector2(27, 27)
 layout_mode = 2
 theme_override_styles/panel = SubResource("NumberBadge")
 
-[node name="Label" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionHeading/DirectionNumber" unique_id=2009620321]
+[node name="Label" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionHeading/DirectionNumber" unique_id=779433205]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.43, 0.85, 0.76, 1)
 theme_override_fonts/font = SubResource("MonoFont")
@@ -567,7 +573,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 
-[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/LeftButton" unique_id=1551780110]
+[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/LeftButton" unique_id=950313972]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -577,21 +583,21 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Arrow" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/LeftButton/Content" unique_id=1889479790]
+[node name="Arrow" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/LeftButton/Content" unique_id=503162310]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.39, 0.85, 0.76, 1)
 theme_override_font_sizes/font_size = 18
 text = "◀"
 horizontal_alignment = 1
 
-[node name="Name" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/LeftButton/Content" unique_id=391646389]
+[node name="Name" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/LeftButton/Content" unique_id=416315272]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.83, 0.93, 0.9, 1)
 theme_override_font_sizes/font_size = 11
 text = "SINISTRA"
 horizontal_alignment = 1
 
-[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/LeftButton" unique_id=459436056]
+[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/LeftButton" unique_id=404467079]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -614,7 +620,7 @@ size_flags_horizontal = 3
 toggle_mode = true
 button_pressed = true
 
-[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/FrontButton" unique_id=2143819806]
+[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/FrontButton" unique_id=364411710]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -624,21 +630,21 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Arrow" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/FrontButton/Content" unique_id=999282385]
+[node name="Arrow" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/FrontButton/Content" unique_id=1578859182]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.39, 0.85, 0.76, 1)
 theme_override_font_sizes/font_size = 18
 text = "▲"
 horizontal_alignment = 1
 
-[node name="Name" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/FrontButton/Content" unique_id=845488923]
+[node name="Name" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/FrontButton/Content" unique_id=2014625407]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.83, 0.93, 0.9, 1)
 theme_override_font_sizes/font_size = 11
 text = "FRONTE"
 horizontal_alignment = 1
 
-[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/FrontButton" unique_id=973495545]
+[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/FrontButton" unique_id=1932742465]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -660,7 +666,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 
-[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/RightButton" unique_id=1631550340]
+[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/RightButton" unique_id=2033259688]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -670,21 +676,21 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Arrow" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/RightButton/Content" unique_id=852951714]
+[node name="Arrow" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/RightButton/Content" unique_id=805369983]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.39, 0.85, 0.76, 1)
 theme_override_font_sizes/font_size = 18
 text = "▶"
 horizontal_alignment = 1
 
-[node name="Name" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/RightButton/Content" unique_id=1526556803]
+[node name="Name" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/RightButton/Content" unique_id=1994687907]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.83, 0.93, 0.9, 1)
 theme_override_font_sizes/font_size = 11
 text = "DESTRA"
 horizontal_alignment = 1
 
-[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/RightButton" unique_id=1925177389]
+[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/RightButton" unique_id=1880727593]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -706,7 +712,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 
-[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/BelowButton" unique_id=1996483713]
+[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/BelowButton" unique_id=1820627860]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -716,21 +722,21 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Arrow" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/BelowButton/Content" unique_id=430168831]
+[node name="Arrow" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/BelowButton/Content" unique_id=2065666663]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.39, 0.85, 0.76, 1)
 theme_override_font_sizes/font_size = 18
 text = "▼"
 horizontal_alignment = 1
 
-[node name="Name" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/BelowButton/Content" unique_id=288150232]
+[node name="Name" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/BelowButton/Content" unique_id=1961203024]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.83, 0.93, 0.9, 1)
 theme_override_font_sizes/font_size = 11
 text = "SOTTO"
 horizontal_alignment = 1
 
-[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/BelowButton" unique_id=359577920]
+[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/BelowButton" unique_id=166552410]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -761,7 +767,7 @@ custom_minimum_size = Vector2(27, 27)
 layout_mode = 2
 theme_override_styles/panel = SubResource("NumberBadge")
 
-[node name="Label" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsHeading/SystemsNumber" unique_id=19935323]
+[node name="Label" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsHeading/SystemsNumber" unique_id=1539167017]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.43, 0.85, 0.76, 1)
 theme_override_fonts/font = SubResource("MonoFont")
@@ -797,7 +803,7 @@ custom_minimum_size = Vector2(95, 67)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/ShieldButton" unique_id=1303451261]
+[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/ShieldButton" unique_id=2031232207]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -811,19 +817,19 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/ShieldButton/Content" unique_id=174024683]
+[node name="Title" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/ShieldButton/Content" unique_id=396241480]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.58, 0.79, 1, 1)
 theme_override_font_sizes/font_size = 13
 text = "SCUDO"
 
-[node name="Cost" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/ShieldButton/Content" unique_id=1727324294]
+[node name="Cost" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/ShieldButton/Content" unique_id=211971918]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.48, 0.62, 0.61, 1)
 theme_override_font_sizes/font_size = 10
 text = "−28 energia"
 
-[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/ShieldButton" unique_id=953392291]
+[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/ShieldButton" unique_id=1338493358]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -844,7 +850,7 @@ custom_minimum_size = Vector2(95, 67)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/LaserButton" unique_id=1335573608]
+[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/LaserButton" unique_id=2125985616]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -858,20 +864,20 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/LaserButton/Content" unique_id=106794697]
+[node name="Title" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/LaserButton/Content" unique_id=1116831612]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.63, 0.42, 1)
 theme_override_font_sizes/font_size = 13
 text = "LASER"
 
-[node name="Cost" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/LaserButton/Content" unique_id=1786665751]
+[node name="Cost" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/LaserButton/Content" unique_id=500706121]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.48, 0.62, 0.61, 1)
 theme_override_font_sizes/font_size = 10
 text = "−8 energia · +36 calore"
 autowrap_mode = 2
 
-[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/LaserButton" unique_id=1625370378]
+[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/LaserButton" unique_id=148713750]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -892,7 +898,7 @@ custom_minimum_size = Vector2(95, 67)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/BoostButton" unique_id=1438474162]
+[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/BoostButton" unique_id=359669275]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -906,20 +912,20 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/BoostButton/Content" unique_id=551277330]
+[node name="Title" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/BoostButton/Content" unique_id=1294194205]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.72, 0.4, 1)
 theme_override_font_sizes/font_size = 13
 text = "PROPULSORI"
 
-[node name="Cost" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/BoostButton/Content" unique_id=349600367]
+[node name="Cost" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/BoostButton/Content" unique_id=981702340]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.48, 0.62, 0.61, 1)
 theme_override_font_sizes/font_size = 10
 text = "−5 energia · +24 calore"
 autowrap_mode = 2
 
-[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/BoostButton" unique_id=1633688699]
+[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/BoostButton" unique_id=1633098015]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -940,7 +946,7 @@ custom_minimum_size = Vector2(95, 67)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RescueButton" unique_id=1840602346]
+[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RescueButton" unique_id=327278816]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -954,19 +960,19 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RescueButton/Content" unique_id=1101905414]
+[node name="Title" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RescueButton/Content" unique_id=408454613]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.43, 0.95, 0.72, 1)
 theme_override_font_sizes/font_size = 13
 text = "SOCCORSO"
 
-[node name="Cost" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RescueButton/Content" unique_id=443752754]
+[node name="Cost" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RescueButton/Content" unique_id=1241593030]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.48, 0.62, 0.61, 1)
 theme_override_font_sizes/font_size = 10
 text = "nessuna energia"
 
-[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RescueButton" unique_id=100761083]
+[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RescueButton" unique_id=1046416200]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -987,7 +993,7 @@ custom_minimum_size = Vector2(95, 67)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/CoolButton" unique_id=970808035]
+[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/CoolButton" unique_id=341393142]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1001,19 +1007,19 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/CoolButton/Content" unique_id=2075913738]
+[node name="Title" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/CoolButton/Content" unique_id=1384154199]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.39, 0.91, 1, 1)
 theme_override_font_sizes/font_size = 13
 text = "RAFFREDDA"
 
-[node name="Cost" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/CoolButton/Content" unique_id=1027792631]
+[node name="Cost" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/CoolButton/Content" unique_id=1983966415]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.48, 0.62, 0.61, 1)
 theme_override_font_sizes/font_size = 10
 text = "−14 refrigerante"
 
-[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/CoolButton" unique_id=1245406681]
+[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/CoolButton" unique_id=1774735693]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -1034,7 +1040,7 @@ custom_minimum_size = Vector2(95, 67)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RepairButton" unique_id=112767330]
+[node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RepairButton" unique_id=1172269215]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1048,19 +1054,19 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RepairButton/Content" unique_id=395712758]
+[node name="Title" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RepairButton/Content" unique_id=1802309995]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.82, 0.46, 1)
 theme_override_font_sizes/font_size = 13
 text = "RIPARA"
 
-[node name="Cost" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RepairButton/Content" unique_id=1881157358]
+[node name="Cost" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RepairButton/Content" unique_id=1339884971]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.48, 0.62, 0.61, 1)
 theme_override_font_sizes/font_size = 10
 text = "−18 energia"
 
-[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RepairButton" unique_id=947114379]
+[node name="Key" type="Label" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RepairButton" unique_id=75665773]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -1095,59 +1101,147 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Briefing" type="PanelContainer" parent="IntroOverlay/Center" unique_id=1121963345]
-custom_minimum_size = Vector2(330, 0)
+custom_minimum_size = Vector2(570, 0)
 layout_mode = 2
+theme_override_styles/panel = SubResource("ResultPanelStyle")
 
 [node name="BriefingMargin" type="MarginContainer" parent="IntroOverlay/Center/Briefing" unique_id=978581312]
 layout_mode = 2
-theme_override_constants/margin_left = 34
-theme_override_constants/margin_top = 28
-theme_override_constants/margin_right = 34
-theme_override_constants/margin_bottom = 28
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 46
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 46
 
 [node name="BriefingContent" type="VBoxContainer" parent="IntroOverlay/Center/Briefing/BriefingMargin" unique_id=245830172]
 layout_mode = 2
-theme_override_constants/separation = 13
+theme_override_constants/separation = 15
 
 [node name="BriefingEyebrow" type="Label" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent" unique_id=1449753475]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.47, 0.7, 0.68, 1)
-theme_override_font_sizes/font_size = 11
+theme_override_fonts/font = SubResource("MonoFont")
+theme_override_font_sizes/font_size = 9
 text = "COLLEGAMENTO NEURALE DISPONIBILE"
 horizontal_alignment = 1
 
-[node name="BriefingTitle" type="Label" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent" unique_id=1961780833]
+[node name="BriefingTitle" type="VBoxContainer" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent" unique_id=1961780833]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.37, 0.14, 1)
-theme_override_font_sizes/font_size = 34
-text = "PROTOCOLLO TITAN"
+theme_override_constants/separation = -9
+
+[node name="BriefingProtocollo" type="Label" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent/BriefingTitle" unique_id=1399707479]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 1, 0.87, 1)
+theme_override_fonts/font = SubResource("SansBoldItalic")
+theme_override_font_sizes/font_size = 42
+text = "PROTOCOLLO"
+horizontal_alignment = 1
+
+[node name="BriefingTitan" type="Label" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent/BriefingTitle" unique_id=1813591215]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.31, 0.15, 1)
+theme_override_fonts/font = SubResource("SansBoldItalic")
+theme_override_font_sizes/font_size = 42
+text = "TITAN"
 horizontal_alignment = 1
 
 [node name="BriefingText" type="Label" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent" unique_id=1775558827]
 layout_mode = 2
-text = "Le prime tre emergenze sono guidate e più lente. Dopo l’addestramento dovrai gestire più minacce contemporaneamente."
+theme_override_colors/font_color = Color(0.72, 0.75, 0.73, 1)
+theme_override_fonts/font = SubResource("MonoFont")
+theme_override_font_sizes/font_size = 11
+text = "Le prime tre emergenze sono guidate e più lente.
+Dopo l’addestramento dovrai gestire più minacce
+contemporaneamente."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Tradeoffs" type="Label" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent" unique_id=1334226420]
+[node name="Tradeoffs" type="HBoxContainer" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent" unique_id=1334226420]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.76, 0.43, 1)
-theme_override_font_sizes/font_size = 12
-text = "SCUDO: molta energia, nessun calore
-LASER / MOVIMENTO: poca energia, molto calore
-SOCCORSO: nessuna energia, solo per i civili"
-horizontal_alignment = 1
+theme_override_constants/separation = 7
+
+[node name="ShieldCard" type="PanelContainer" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent/Tradeoffs" unique_id=2063040189]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("ResultStatStyle")
+
+[node name="Text" type="RichTextLabel" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent/Tradeoffs/ShieldCard" unique_id=1527676836]
+custom_minimum_size = Vector2(0, 118)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.56, 0.62, 0.61, 1)
+theme_override_fonts/normal_font = SubResource("MonoFont")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center][color=#ffbd5c][b]SCUDO[/b][/color]
+
+Molto consumo
+energetico
+
+Nessun calore[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="LaserCard" type="PanelContainer" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent/Tradeoffs" unique_id=258452815]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("ResultStatStyle")
+
+[node name="Text" type="RichTextLabel" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent/Tradeoffs/LaserCard" unique_id=943362328]
+custom_minimum_size = Vector2(0, 118)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.56, 0.62, 0.61, 1)
+theme_override_fonts/normal_font = SubResource("MonoFont")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center][color=#ffbd5c][b]LASER / MOVIMENTO[/b][/color]
+
+Poca energia
+
+Molto calore[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="RescueCard" type="PanelContainer" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent/Tradeoffs" unique_id=403644918]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("ResultStatStyle")
+
+[node name="Text" type="RichTextLabel" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent/Tradeoffs/RescueCard" unique_id=1809248706]
+custom_minimum_size = Vector2(0, 118)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.56, 0.62, 0.61, 1)
+theme_override_fonts/normal_font = SubResource("MonoFont")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center][color=#ffbd5c][b]SOCCORSO[/b][/color]
+
+Nessuna energia
+
+Solo per i civili[/center]"
+fit_content = true
+scroll_active = false
 
 [node name="StartButton" type="Button" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent" unique_id=811046336]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.94, 0.9, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("MonoFont")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("ResultButtonStyle")
+theme_override_styles/pressed = SubResource("ResultButtonHoverStyle")
+theme_override_styles/hover = SubResource("ResultButtonHoverStyle")
+theme_override_styles/focus = SubResource("ResultButtonHoverStyle")
 text = "AVVIA ADDESTRAMENTO"
 
 [node name="InputHint" type="Label" parent="IntroOverlay/Center/Briefing/BriefingMargin/BriefingContent" unique_id=311832603]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.39, 0.53, 0.51, 1)
-theme_override_font_sizes/font_size = 10
+theme_override_fonts/font = SubResource("MonoFont")
+theme_override_font_sizes/font_size = 8
 text = "Desktop: frecce + tasti 1–6 · Telefono: usa la pulsantiera"
 horizontal_alignment = 1
 
@@ -1215,15 +1309,15 @@ autowrap_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="ScoreCard" type="PanelContainer" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats" unique_id=466858359]
+[node name="ScoreCard" type="PanelContainer" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats" unique_id=1313161351]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("ResultStatStyle")
 
-[node name="Content" type="VBoxContainer" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/ScoreCard" unique_id=1278820012]
+[node name="Content" type="VBoxContainer" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/ScoreCard" unique_id=223662660]
 layout_mode = 2
 
-[node name="Caption" type="Label" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/ScoreCard/Content" unique_id=1415766625]
+[node name="Caption" type="Label" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/ScoreCard/Content" unique_id=742429471]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.56, 0.62, 0.61, 1)
 theme_override_fonts/font = SubResource("MonoFont")
@@ -1231,7 +1325,7 @@ theme_override_font_sizes/font_size = 9
 text = "PUNTEGGIO"
 horizontal_alignment = 1
 
-[node name="ResultScore" type="Label" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/ScoreCard/Content" unique_id=692861595]
+[node name="ResultScore" type="Label" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/ScoreCard/Content" unique_id=1480112426]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.62, 1, 0.87, 1)
@@ -1240,15 +1334,15 @@ theme_override_font_sizes/font_size = 21
 text = "0"
 horizontal_alignment = 1
 
-[node name="CiviliansCard" type="PanelContainer" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats" unique_id=1519016753]
+[node name="CiviliansCard" type="PanelContainer" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats" unique_id=7853923]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("ResultStatStyle")
 
-[node name="Content" type="VBoxContainer" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/CiviliansCard" unique_id=937188167]
+[node name="Content" type="VBoxContainer" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/CiviliansCard" unique_id=1698400649]
 layout_mode = 2
 
-[node name="Caption" type="Label" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/CiviliansCard/Content" unique_id=1042382650]
+[node name="Caption" type="Label" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/CiviliansCard/Content" unique_id=1580568599]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.56, 0.62, 0.61, 1)
 theme_override_fonts/font = SubResource("MonoFont")
@@ -1256,7 +1350,7 @@ theme_override_font_sizes/font_size = 9
 text = "CIVILI"
 horizontal_alignment = 1
 
-[node name="ResultCivilians" type="Label" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/CiviliansCard/Content" unique_id=720681136]
+[node name="ResultCivilians" type="Label" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/CiviliansCard/Content" unique_id=1879529062]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.62, 1, 0.87, 1)
@@ -1265,15 +1359,15 @@ theme_override_font_sizes/font_size = 21
 text = "0"
 horizontal_alignment = 1
 
-[node name="IntegrityCard" type="PanelContainer" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats" unique_id=607508267]
+[node name="IntegrityCard" type="PanelContainer" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats" unique_id=751685184]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("ResultStatStyle")
 
-[node name="Content" type="VBoxContainer" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/IntegrityCard" unique_id=1725288760]
+[node name="Content" type="VBoxContainer" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/IntegrityCard" unique_id=2108660754]
 layout_mode = 2
 
-[node name="Caption" type="Label" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/IntegrityCard/Content" unique_id=1538552234]
+[node name="Caption" type="Label" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/IntegrityCard/Content" unique_id=2116899480]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.56, 0.62, 0.61, 1)
 theme_override_fonts/font = SubResource("MonoFont")
@@ -1281,7 +1375,7 @@ theme_override_font_sizes/font_size = 9
 text = "INTEGRITÀ"
 horizontal_alignment = 1
 
-[node name="ResultIntegrity" type="Label" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/IntegrityCard/Content" unique_id=1283216240]
+[node name="ResultIntegrity" type="Label" parent="ResultOverlay/Center/ResultPanel/ResultMargin/ResultContent/ResultStats/IntegrityCard/Content" unique_id=1691611679]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.62, 1, 0.87, 1)

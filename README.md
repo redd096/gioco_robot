@@ -1,6 +1,8 @@
 # gioco_robot — Godot 4
 
-Porting nativo della versione 8 del prototipo web. Funziona con mouse, tastiera e touch, sia in orizzontale sia in verticale.
+Porting nativo della versione web. Funziona con mouse, tastiera e touch, sia in orizzontale sia in verticale.
+
+Questa revisione allinea la direzione artistica alla UI web: pulsantiera piatta ad alto contrasto, titoli inclinati, indicatori numerici incorniciati, telemetria con percentuali allineate, pannello COMANDO stabile e rapporto missione a schede.
 
 ## Avvio
 
@@ -22,6 +24,8 @@ La UI è composta da nodi `Control` nelle scene `main.tscn` ed `emergency_card.t
 - Un comando senza risorse fa lampeggiare e scuotere sia il pulsante sia la barra interessata.
 - In landscape le card mantengono una griglia stabile e non cambiano larghezza quando il loro numero è dispari.
 - La console usa pannelli azzurri, pulsanti colorati per sistema, costi e scorciatoie separati e animazioni di pressione.
+- Il briefing iniziale e il rapporto finale usano la stessa struttura a schede della versione web.
+- Il pannello `COMANDO` scorre dopo tutte le righe di emergenze e non può sovrapporsi alle card.
 
 ## Struttura
 
