@@ -1,8 +1,8 @@
 # gioco_robot — Godot 4
 
-Porting nativo della versione web. Funziona con mouse, tastiera e touch, sia in orizzontale sia in verticale.
+Porting nativo della versione web. È ottimizzato prima di tutto per il landscape desktop/Steam e resta utilizzabile con mouse, tastiera e touch.
 
-Questa revisione allinea la direzione artistica alla UI web: pulsantiera piatta ad alto contrasto, titoli inclinati, indicatori numerici incorniciati, telemetria con percentuali allineate, pannello COMANDO stabile e rapporto missione a schede.
+Questa revisione allinea la direzione artistica alla UI web: cornice cockpit azzurra, pulsantiera piatta ad alto contrasto, colori più luminosi, stato sistemi al neon, titoli inclinati, indicatori numerici incorniciati, telemetria con percentuali allineate, pannello COMANDO stabile e rapporto missione a schede.
 
 ## Avvio
 
@@ -32,5 +32,6 @@ La UI è composta da nodi `Control` nelle scene `main.tscn` ed `emergency_card.t
 - `scenes/main.tscn`: interfaccia principale modificabile dall’editor.
 - `scenes/emergency_card.tscn`: scheda riutilizzabile per un’emergenza.
 - `scripts/main.gd`: regole, bilanciamento e stato della missione.
-- `scripts/responsive_play_area.gd`: layout responsivo e inversione mancini.
+- Il layout di gioco è gestito direttamente da `HBoxContainer`, rapporti di espansione e ancoraggi della scena; il codice cambia soltanto l’ordine dei due pannelli per la modalità mancina.
+- Colori e stati visivi dei pulsanti sono varianti modificabili in `theme/titan_theme.tres`, non vengono generati a runtime.
 - `export_presets.cfg`: preset Windows, Linux, WebGL e Android.

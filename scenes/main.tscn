@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cc4kkgqryulc"]
 
 [ext_resource type="Script" uid="uid://dtfab7qibu8we" path="res://scripts/main.gd" id="1_main"]
-[ext_resource type="Script" uid="uid://ynuy7rwcf5ig" path="res://scripts/responsive_play_area.gd" id="2_responsive"]
 
 [sub_resource type="Shader" id="BackgroundShader"]
 code = "shader_type canvas_item;
@@ -21,6 +20,14 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="BackgroundMaterial"]
 shader = SubResource("BackgroundShader")
 
+[sub_resource type="StyleBoxFlat" id="CockpitFrame"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.13, 0.68, 0.71, 0.9)
+
 [sub_resource type="StyleBoxFlat" id="HeaderPanel"]
 content_margin_left = 10.0
 content_margin_top = 8.0
@@ -28,7 +35,7 @@ content_margin_right = 10.0
 content_margin_bottom = 8.0
 bg_color = Color(0.02, 0.065, 0.078, 0.96)
 border_width_bottom = 1
-border_color = Color(0.14, 0.36, 0.38, 1)
+border_color = Color(0.16, 0.62, 0.65, 1)
 
 [sub_resource type="SystemFont" id="SansBoldItalic"]
 font_names = PackedStringArray("Arial", "Liberation Sans", "Noto Sans")
@@ -40,12 +47,12 @@ content_margin_left = 10.0
 content_margin_top = 9.0
 content_margin_right = 10.0
 content_margin_bottom = 9.0
-bg_color = Color(0.018, 0.07, 0.085, 0.94)
+bg_color = Color(0.012, 0.055, 0.065, 0.96)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.12, 0.38, 0.42, 1)
+border_color = Color(0.12, 0.6, 0.64, 1)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -56,9 +63,9 @@ content_margin_left = 9.0
 content_margin_top = 6.0
 content_margin_right = 9.0
 content_margin_bottom = 6.0
-bg_color = Color(0.035, 0.085, 0.095, 1)
+bg_color = Color(0.018, 0.072, 0.08, 1)
 border_width_left = 3
-border_color = Color(1, 0.46, 0.18, 1)
+border_color = Color(1, 0.39, 0.12, 1)
 
 [sub_resource type="StyleBoxFlat" id="NumberBadge"]
 content_margin_left = 6.0
@@ -70,7 +77,7 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.12, 0.38, 0.4, 1)
+border_color = Color(0.16, 0.7, 0.7, 1)
 
 [sub_resource type="SystemFont" id="MonoFont"]
 font_names = PackedStringArray("JetBrains Mono", "Roboto Mono", "DejaVu Sans Mono", "Noto Sans Mono")
@@ -142,6 +149,21 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.008, 0.026, 0.034, 1)
+
+[node name="CockpitFrame" type="Panel" parent="." unique_id=384216055]
+z_index = 7
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("CockpitFrame")
 
 [node name="ImpactFlash" type="ColorRect" parent="." unique_id=314536460]
 unique_name_in_owner = true
@@ -254,20 +276,27 @@ columns = 3
 unique_name_in_owner = true
 custom_minimum_size = Vector2(112, 40)
 layout_mode = 2
+theme_type_variation = &"HeaderToggleButton"
 theme_override_font_sizes/font_size = 11
+toggle_mode = true
+button_pressed = true
 text = "ALLARMI ON"
 
 [node name="ButtonSoundButton" type="Button" parent="Scroll/Margin/Content/Header/HeaderRow/HeaderControls" unique_id=819470494]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(112, 40)
 layout_mode = 2
+theme_type_variation = &"HeaderToggleButton"
 theme_override_font_sizes/font_size = 11
+toggle_mode = true
+button_pressed = true
 text = "PULSANTI ON"
 
 [node name="HandednessButton" type="Button" parent="Scroll/Margin/Content/Header/HeaderRow/HeaderControls" unique_id=1579179984]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(112, 40)
 layout_mode = 2
+theme_type_variation = &"HeaderToggleButton"
 theme_override_font_sizes/font_size = 11
 text = "COMANDI DX"
 
@@ -334,6 +363,7 @@ horizontal_alignment = 2
 
 [node name="EnergyBar" type="ProgressBar" parent="Scroll/Margin/Content/MetersPanel/Meters/EnergyMeter" unique_id=804758359]
 unique_name_in_owner = true
+self_modulate = Color(0.23, 0.72, 1, 1)
 custom_minimum_size = Vector2(80, 8)
 layout_mode = 2
 value = 100.0
@@ -363,6 +393,7 @@ horizontal_alignment = 2
 
 [node name="HeatBar" type="ProgressBar" parent="Scroll/Margin/Content/MetersPanel/Meters/HeatMeter" unique_id=176495613]
 unique_name_in_owner = true
+self_modulate = Color(1, 0.25, 0.12, 1)
 custom_minimum_size = Vector2(80, 8)
 layout_mode = 2
 show_percentage = false
@@ -391,6 +422,7 @@ horizontal_alignment = 2
 
 [node name="CoolantBar" type="ProgressBar" parent="Scroll/Margin/Content/MetersPanel/Meters/CoolantMeter" unique_id=1061334515]
 unique_name_in_owner = true
+self_modulate = Color(0.2, 0.94, 1, 1)
 custom_minimum_size = Vector2(80, 8)
 layout_mode = 2
 value = 100.0
@@ -405,6 +437,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.42, 1, 0.8, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.95, 0.7, 0.6)
+theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 11
 text = "● SISTEMI OPERATIVI"
 
@@ -426,14 +460,15 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "PUNTI 00000"
 
-[node name="PlayArea" type="Container" parent="Scroll/Margin/Content" unique_id=2050493766]
-custom_minimum_size = Vector2(0, 430)
+[node name="PlayArea" type="HBoxContainer" parent="Scroll/Margin/Content" unique_id=2050493766]
 layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("2_responsive")
+theme_override_constants/separation = 12
 
 [node name="AlertsColumn" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea" unique_id=1220303628]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.15
 theme_override_constants/separation = 7
 
 [node name="AlertsScroll" type="ScrollContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn" unique_id=83401098]
@@ -491,6 +526,14 @@ text = "In attesa di telemetria."
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="GridSpacer" type="Control" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsStack/AlertsGrid" unique_id=386061045]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(250, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
 [node name="FeedbackPanel" type="PanelContainer" parent="Scroll/Margin/Content/PlayArea/AlertsColumn/AlertsScroll/AlertsStack" unique_id=1400892240]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 42)
@@ -518,6 +561,8 @@ autowrap_mode = 2
 
 [node name="ControlsPanel" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea" unique_id=1539737576]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.85
 theme_override_constants/separation = 9
 
 [node name="DirectionPanel" type="PanelContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel" unique_id=1981357587]
@@ -571,6 +616,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(70, 66)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_type_variation = &"DirectionButton"
 toggle_mode = true
 
 [node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/LeftButton" unique_id=950313972]
@@ -617,6 +663,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(70, 66)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_type_variation = &"DirectionButton"
 toggle_mode = true
 button_pressed = true
 
@@ -664,6 +711,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(70, 66)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_type_variation = &"DirectionButton"
 toggle_mode = true
 
 [node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/RightButton" unique_id=2033259688]
@@ -710,6 +758,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(70, 66)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_type_variation = &"DirectionButton"
 toggle_mode = true
 
 [node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/DirectionPanel/DirectionContent/DirectionGrid/BelowButton" unique_id=1820627860]
@@ -802,6 +851,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(95, 67)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_type_variation = &"ShieldButton"
 
 [node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/ShieldButton" unique_id=2031232207]
 layout_mode = 1
@@ -849,6 +899,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(95, 67)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_type_variation = &"LaserButton"
 
 [node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/LaserButton" unique_id=2125985616]
 layout_mode = 1
@@ -897,6 +948,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(95, 67)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_type_variation = &"BoostButton"
 
 [node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/BoostButton" unique_id=359669275]
 layout_mode = 1
@@ -945,6 +997,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(95, 67)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_type_variation = &"RescueButton"
 
 [node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RescueButton" unique_id=327278816]
 layout_mode = 1
@@ -992,6 +1045,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(95, 67)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_type_variation = &"CoolButton"
 
 [node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/CoolButton" unique_id=341393142]
 layout_mode = 1
@@ -1039,6 +1093,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(95, 67)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_type_variation = &"RepairButton"
 
 [node name="Content" type="VBoxContainer" parent="Scroll/Margin/Content/PlayArea/ControlsPanel/SystemsPanel/SystemsContent/SystemsGrid/RepairButton" unique_id=1172269215]
 layout_mode = 1

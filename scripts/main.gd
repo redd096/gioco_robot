@@ -66,13 +66,13 @@ var left_handed := false
 var denial_time := 0.0
 var cards: Dictionary = {}
 var audio_player: AudioStreamPlayer
-var grid_spacer: Control
 
 @onready var alerts_grid: GridContainer = %AlertsGrid
+@onready var grid_spacer: Control = %GridSpacer
 @onready var radar_idle: PanelContainer = %RadarIdle
 @onready var intro_overlay: ColorRect = %IntroOverlay
 @onready var result_overlay: ColorRect = %ResultOverlay
-@onready var play_area = $Scroll/Margin/Content/PlayArea
+@onready var play_area: HBoxContainer = $Scroll/Margin/Content/PlayArea
 
 
 static func _event(id: String, title: String, body: String, seconds: float, solutions: Array, success: String, damage: float, rescued := 0, hint := "", boss := false) -> Dictionary:
@@ -83,12 +83,6 @@ func _ready() -> void:
 	randomize()
 	audio_player = AudioStreamPlayer.new()
 	add_child(audio_player)
-	grid_spacer = Control.new()
-	grid_spacer.custom_minimum_size = Vector2(250.0, 1.0)
-	grid_spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	grid_spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	alerts_grid.add_child(grid_spacer)
-	grid_spacer.hide()
 	_configure_visuals()
 	_load_preferences()
 	%StartButton.pressed.connect(start_mission)
@@ -106,12 +100,7 @@ func _ready() -> void:
 	%RescueButton.pressed.connect(use_system.bind("rescue"))
 	%CoolButton.pressed.connect(use_system.bind("cool"))
 	%RepairButton.pressed.connect(use_system.bind("repair"))
-	get_viewport().size_changed.connect(_on_viewport_resized)
-	%EnergyBar.self_modulate = Color(0.28, 0.67, 1.0)
-	%HeatBar.self_modulate = Color(1.0, 0.29, 0.19)
-	%CoolantBar.self_modulate = Color(0.36, 0.9, 1.0)
 	_render()
-	_on_viewport_resized()
 
 
 func _process(delta: float) -> void:
@@ -433,7 +422,10 @@ func _render() -> void:
 	%HeatBar.value = heat
 	%CoolantBar.value = coolant
 	%StatusLabel.text = "● BLOCCO REATTORE %.1fs" % reactor_lock if reactor_lock > 0.0 else "● SISTEMI OPERATIVI"
-	%StatusLabel.modulate = Color(1.0, 0.3, 0.22) if reactor_lock > 0.0 else Color(0.42, 1.0, 0.8)
+	var reactor_locked := reactor_lock > 0.0
+	%StatusLabel.modulate = Color.WHITE
+	%StatusLabel.add_theme_color_override("font_color", Color(1.0, 0.25, 0.16) if reactor_locked else Color(0.25, 1.0, 0.72))
+	%StatusLabel.add_theme_color_override("font_outline_color", Color(1.0, 0.08, 0.04, 0.55) if reactor_locked else Color(0.08, 1.0, 0.66, 0.6))
 	%ThreatsLabel.text = "MINACCE %d" % _active_count()
 	%CiviliansLabel.text = "CIVILI %03d" % civilians
 	%ScoreLabel.text = "PUNTI %05d" % score
@@ -556,34 +548,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 
-func _on_viewport_resized() -> void:
-	var viewport_size := get_viewport_rect().size
-	alerts_grid.columns = 2 if viewport_size.x >= 920.0 and viewport_size.x > viewport_size.y else 1
-	var portrait := viewport_size.x < viewport_size.y * 1.05
-	%ProtocolloTitle.add_theme_font_size_override("font_size", 17 if portrait else 29)
-	%TitanTitle.add_theme_font_size_override("font_size", 17 if portrait else 29)
-	%ResultTitle.add_theme_font_size_override("font_size", 27 if portrait else 41)
-	var result_width := minf(570.0, viewport_size.x - 24.0)
-	$ResultOverlay/Center/ResultPanel.custom_minimum_size = Vector2(result_width, 380.0)
-	# $IntroOverlay/Center/Briefing.custom_minimum_size = Vector2(result_width, 565.0)
-	var result_margin := 24 if portrait else 48
-	for margin_name in ["margin_left", "margin_top", "margin_right", "margin_bottom"]:
-		$ResultOverlay/Center/ResultPanel/ResultMargin.add_theme_constant_override(margin_name, result_margin)
-		$IntroOverlay/Center/Briefing/BriefingMargin.add_theme_constant_override(margin_name, result_margin)
-	%BriefingProtocollo.add_theme_font_size_override("font_size", 31 if portrait else 42)
-	%BriefingTitan.add_theme_font_size_override("font_size", 31 if portrait else 42)
-	%HeaderControls.columns = 1 if portrait else 3
-	$Scroll/Margin/Content/Header/HeaderRow.add_theme_constant_override("separation", 6 if portrait else 14)
-	$Scroll/Margin/Content/MetersPanel/Meters.columns = 2 if portrait else 4
-	for header_button in [%AlarmSoundButton, %ButtonSoundButton, %HandednessButton]:
-		header_button.custom_minimum_size = Vector2(92.0, 36.0) if portrait else Vector2(112.0, 40.0)
-		header_button.add_theme_font_size_override("font_size", 9 if portrait else 11)
-	%DirectionGrid.columns = 2 if portrait else 4
-	%SystemsGrid.columns = 2 if portrait else 3
-	play_area.queue_sort()
-	_update_grid_spacer()
-
-
 func _toggle_alarm_sound() -> void:
 	alarm_sounds = not alarm_sounds
 	_refresh_header_buttons()
@@ -600,7 +564,7 @@ func _toggle_button_sound() -> void:
 
 func _toggle_handedness() -> void:
 	left_handed = not left_handed
-	play_area.set_left_handed(left_handed)
+	_apply_handedness()
 	_refresh_header_buttons()
 	_button_beep(520.0, 0.07)
 	_save_preferences()
@@ -613,106 +577,31 @@ func _load_preferences() -> void:
 		button_sounds = bool(config.get_value("audio", "buttons", true))
 		left_handed = bool(config.get_value("layout", "left_handed", false))
 	_refresh_header_buttons()
-	play_area.set_left_handed(left_handed)
+	_apply_handedness()
 
 
 func _configure_visuals() -> void:
-	var direction_buttons: Array[Button] = [%LeftButton, %FrontButton, %RightButton, %BelowButton]
-	for button in direction_buttons:
-		_style_direction_button(button)
-		_connect_press_animation(button)
-	var system_styles := [
-		[%ShieldButton, Color(0.018, 0.055, 0.085), Color(0.18, 0.55, 0.78)],
-		[%LaserButton, Color(0.09, 0.022, 0.016), Color(0.82, 0.25, 0.1)],
-		[%BoostButton, Color(0.085, 0.045, 0.012), Color(0.84, 0.49, 0.08)],
-		[%RescueButton, Color(0.015, 0.075, 0.052), Color(0.19, 0.65, 0.45)],
-		[%CoolButton, Color(0.012, 0.065, 0.085), Color(0.13, 0.58, 0.75)],
-		[%RepairButton, Color(0.075, 0.065, 0.012), Color(0.68, 0.55, 0.12)],
+	var animated_buttons: Array[Button] = [
+		%LeftButton, %FrontButton, %RightButton, %BelowButton,
+		%ShieldButton, %LaserButton, %BoostButton,
+		%RescueButton, %CoolButton, %RepairButton,
 	]
-	for entry in system_styles:
-		var system_button := entry[0] as Button
-		var background: Color = entry[1]
-		var accent: Color = entry[2]
-		_style_system_button(system_button, background, accent)
-		_connect_press_animation(system_button)
-	_style_header_button(%HandednessButton, true)
-
-
-func _style_direction_button(button: Button) -> void:
-	button.add_theme_stylebox_override("normal", _button_style(Color(0.012, 0.047, 0.052), Color(0.16, 0.48, 0.5)))
-	button.add_theme_stylebox_override("hover", _button_style(Color(0.018, 0.09, 0.095), Color(0.4, 0.9, 0.8)))
-	button.add_theme_stylebox_override("pressed", _button_style(Color(0.42, 0.105, 0.025), Color(1.0, 0.4, 0.14)))
-	button.add_theme_stylebox_override("focus", _button_style(Color(0.018, 0.09, 0.095), Color(0.4, 0.9, 0.8)))
-	_add_button_gradient(button, Color(0.025, 0.1, 0.1), Color(0.004, 0.018, 0.022))
-
-
-func _style_system_button(button: Button, background: Color, accent: Color) -> void:
-	button.add_theme_stylebox_override("normal", _button_style(background, accent))
-	button.add_theme_stylebox_override("hover", _button_style(background.lightened(0.045), accent.lightened(0.16)))
-	button.add_theme_stylebox_override("pressed", _button_style(background.lightened(0.08), accent.lightened(0.2)))
-	button.add_theme_stylebox_override("focus", _button_style(background.lightened(0.035), accent.lightened(0.08)))
-	_add_button_gradient(button, background.lightened(0.07), background.darkened(0.22))
-
-
-func _style_header_button(button: Button, enabled: bool) -> void:
-	var background := Color(0.025, 0.13, 0.15) if enabled else Color(0.17, 0.055, 0.018)
-	var accent := Color(0.22, 0.57, 0.59) if enabled else Color(0.78, 0.31, 0.13)
-	var font_color := Color(0.68, 0.9, 0.86) if enabled else Color(1.0, 0.63, 0.43)
-	button.add_theme_stylebox_override("normal", _button_style(background, accent))
-	button.add_theme_stylebox_override("hover", _button_style(background.lightened(0.08), accent.lightened(0.1)))
-	button.add_theme_stylebox_override("pressed", _button_style(background.lightened(0.13), accent.lightened(0.15)))
-	button.add_theme_stylebox_override("focus", _button_style(background.lightened(0.08), accent))
-	button.add_theme_color_override("font_color", font_color)
-	button.add_theme_color_override("font_hover_color", font_color.lightened(0.1))
-	button.add_theme_color_override("font_pressed_color", font_color)
+	for button in animated_buttons:
+		_connect_press_animation(button)
 
 
 func _refresh_header_buttons() -> void:
 	%AlarmSoundButton.text = "ALLARMI ON" if alarm_sounds else "ALLARMI OFF"
 	%ButtonSoundButton.text = "PULSANTI ON" if button_sounds else "PULSANTI OFF"
 	%HandednessButton.text = "COMANDI SX" if left_handed else "COMANDI DX"
-	_style_header_button(%AlarmSoundButton, alarm_sounds)
-	_style_header_button(%ButtonSoundButton, button_sounds)
-	_style_header_button(%HandednessButton, true)
+	%AlarmSoundButton.set_pressed_no_signal(alarm_sounds)
+	%ButtonSoundButton.set_pressed_no_signal(button_sounds)
 
 
-func _button_style(background: Color, border: Color) -> StyleBoxFlat:
-	var style := StyleBoxFlat.new()
-	style.bg_color = background
-	style.border_color = border
-	style.border_width_left = 1
-	style.border_width_top = 1
-	style.border_width_right = 1
-	style.border_width_bottom = 1
-	style.content_margin_left = 7.0
-	style.content_margin_top = 6.0
-	style.content_margin_right = 7.0
-	style.content_margin_bottom = 6.0
-	return style
-
-
-func _add_button_gradient(button: Button, start_color: Color, end_color: Color) -> void:
-	if button.has_node("Gradient"):
-		return
-	start_color.a = 0.18
-	end_color.a = 0.18
-	var gradient := Gradient.new()
-	gradient.colors = PackedColorArray([start_color, end_color])
-	var texture := GradientTexture2D.new()
-	texture.gradient = gradient
-	texture.width = 256
-	texture.height = 96
-	texture.fill_from = Vector2(0.0, 0.0)
-	texture.fill_to = Vector2(1.0, 1.0)
-	var overlay := TextureRect.new()
-	overlay.name = "Gradient"
-	overlay.texture = texture
-	overlay.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	overlay.stretch_mode = TextureRect.STRETCH_SCALE
-	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	button.add_child(overlay)
-	button.move_child(overlay, 0)
-	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+func _apply_handedness() -> void:
+	var alerts_column := play_area.get_node("AlertsColumn")
+	var controls_panel := play_area.get_node("ControlsPanel")
+	play_area.move_child(controls_panel if left_handed else alerts_column, 0)
 
 
 func _connect_press_animation(button: Button) -> void:
